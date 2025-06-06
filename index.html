@@ -1,119 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-[#18181c] text-white">
+<html lang="en" class="bg-[#0a1124] text-white">
 <head>
   <meta charset="UTF-8">
-  <title>Ark | Grandeur of Design</title>
+  <title>Cosmic Landing Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      padding: 0;
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #181c34 70%, #0a1124 100%);
     }
-    .bg-ark {
-      background: 
-        linear-gradient(rgba(24,24,28,0.93), rgba(24,24,28,0.95)),
-        url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    .cosmo-glow {
+      box-shadow: 0 0 40px 10px #38bdf8, 0 0 80px 20px #818cf8, 0 0 160px 40px #0ea5e9;
+    }
+    .glass {
+      background: rgba(30, 41, 59, 0.68);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(59,130,246,0.1);
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 100%;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
     }
   </style>
 </head>
-<body class="bg-ark min-h-screen flex flex-col">
-  <div class="flex flex-1 min-h-screen">
+<body class="relative min-h-screen flex flex-col items-center">
 
-    <!-- Боковая панель -->
-    <aside class="hidden md:flex flex-col justify-between items-center w-20 bg-black/70 py-10">
-      <div class="flex flex-col items-center space-y-4">
-        <span class="text-3xl font-bold tracking-tight">Ark</span>
-      </div>
-      <div class="flex flex-col items-center space-y-7 mb-10 text-gray-400">
-        <a href="#" class="hover:text-white transition"><svg width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
-        <a href="#" class="hover:text-white transition"><svg width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
-        <a href="#" class="hover:text-white transition"><svg width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
-      </div>
-    </aside>
-
-    <!-- Основной контент -->
-    <main class="flex-1 flex flex-col">
-      <!-- Верхнее меню -->
-      <nav class="flex justify-between items-center px-10 py-6">
-        <div class="block md:hidden text-3xl font-bold">Ark</div>
-        <div class="flex-1"></div>
-        <div class="space-x-8 hidden md:flex">
-          <a href="#" class="text-white font-medium hover:text-[#0ea5e9]">Home</a>
-          <a href="#" class="text-white font-medium hover:text-[#0ea5e9]">About</a>
-          <a href="#" class="text-white font-medium hover:text-[#0ea5e9]">Work</a>
-          <a href="#" class="text-white font-medium hover:text-[#0ea5e9]">Contact</a>
-        </div>
-        <button class="ml-6 border border-gray-500 rounded-md p-2 hover:bg-gray-700">
-          <svg width="24" height="24" fill="currentColor"><rect width="8" height="8" x="2" y="2"/><rect width="8" height="8" x="14" y="2"/><rect width="8" height="8" x="2" y="14"/><rect width="8" height="8" x="14" y="14"/></svg>
-        </button>
-      </nav>
-      <!-- Контент -->
-      <div class="flex flex-1 flex-col lg:flex-row px-10 pb-12">
-
-        <!-- Левая часть -->
-        <section class="flex flex-col justify-center w-full lg:w-1/3 space-y-8 pt-10">
-          <div class="flex items-center space-x-4">
-            <span class="text-lg tracking-widest text-gray-400">01</span>
-            <div class="h-px w-24 bg-gray-600"></div>
-            <span class="text-lg tracking-widest text-gray-600">02</span>
-          </div>
-          <div>
-            <span class="text-lg font-semibold tracking-widest text-white">Work Compilation</span>
-            <div class="flex flex-col mt-3 space-y-1 text-gray-400">
-              <span>2014-2016</span>
-              <span>2017-2018</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Центральная часть -->
-        <section class="flex-1 flex flex-col justify-center items-start pl-0 lg:pl-16 mt-10 lg:mt-0">
-          <p class="italic text-lg text-gray-400 mb-2">Marvel at the</p>
-          <h1 class="text-5xl lg:text-7xl font-extrabold mb-4 leading-tight">
-            GRANDEUR<br>
-            OF DESIGN
-          </h1>
-          <p class="mb-6 text-gray-300 max-w-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <button class="border border-gray-300 px-8 py-3 rounded transition text-white hover:bg-[#0ea5e9] hover:border-[#0ea5e9] hover:text-white font-semibold tracking-wide">
-            EXPLORE
-          </button>
-        </section>
-      </div>
-
-      <!-- Нижние карточки -->
-      <footer class="w-full flex flex-col md:flex-row gap-2 px-10 pb-10">
-        <div class="bg-black/60 flex-1 p-6 min-w-[200px]">
-          <div class="text-gray-400 uppercase text-sm">Contact</div>
-          <div class="text-white font-bold text-lg mt-1">T: +27 82 850 1495</div>
-          <div class="text-white text-sm mt-1">E: ark@deaign.co.za</div>
-        </div>
-        <div class="bg-black/60 flex-1 p-6 min-w-[200px] flex flex-col justify-between">
-          <div>
-            <div class="text-gray-400 uppercase text-sm">Events</div>
-            <div class="text-white font-bold text-lg mt-1">Fri-Sat: 09:00am - 15:00pm</div>
-            <div class="text-white text-sm mt-1">Stadium Theatre</div>
-          </div>
-          <div class="mt-4">
-            <button class="rounded-full w-12 h-12 flex items-center justify-center border border-gray-400 hover:border-[#0ea5e9] hover:bg-[#0ea5e9]/30">
-              <svg fill="none" stroke="white" stroke-width="2" width="26" height="26" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke="currentColor"/>
-                <polygon points="10,8 16,12 10,16" fill="white"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="bg-black/60 flex-1 p-6 min-w-[200px]">
-          <div class="text-gray-400 uppercase text-sm">News</div>
-          <div class="text-white font-bold text-lg mt-1">Lorem ipsum</div>
-          <div class="text-white text-sm mt-1">Lorem ipsum dolor sit, sed do eiusmod.</div>
-        </div>
-      </footer>
-    </main>
+  <!-- Decorative Stars (simple random placement, for effect) -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden -z-10">
+    <div class="star" style="top: 5%; left: 20%; width: 2px; height: 2px;"></div>
+    <div class="star" style="top: 13%; left: 60%; width: 1.5px; height: 1.5px;"></div>
+    <div class="star" style="top: 50%; left: 80%; width: 2.5px; height: 2.5px;"></div>
+    <div class="star" style="top: 70%; left: 30%; width: 1.2px; height: 1.2px;"></div>
+    <div class="star" style="top: 90%; left: 55%; width: 1px; height: 1px;"></div>
+    <div class="star" style="top: 40%; left: 42%; width: 1.6px; height: 1.6px;"></div>
+    <div class="star" style="top: 77%; left: 87%; width: 2.5px; height: 2.5px;"></div>
   </div>
+
+  <!-- Навигация -->
+  <header class="w-full max-w-6xl flex items-center justify-between px-6 pt-8">
+    <div class="flex items-center gap-2">
+      <img src="https://api.iconify.design/mdi/rocket-launch.svg?color=white" alt="Logo" class="w-8 h-8" />
+      <span class="font-bold text-xl tracking-widest">CosmoApp</span>
+    </div>
+    <nav class="hidden md:flex gap-8 text-slate-200 text-sm font-semibold">
+      <a href="#" class="hover:text-cyan-400 transition">FAQs</a>
+      <a href="#" class="hover:text-cyan-400 transition">Blog</a>
+      <a href="#" class="hover:text-cyan-400 transition">Community</a>
+      <a href="#" class="hover:text-cyan-400 transition">Resources</a>
+    </nav>
+    <a href="#" class="bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 px-5 py-2 rounded-lg font-semibold text-white shadow-cyan-400/20 hover:scale-105 transition text-sm">App</a>
+  </header>
+
+  <!-- Космический шар + хиро -->
+  <section class="w-full max-w-6xl mx-auto mt-12 flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-0 px-6 z-10">
+    <!-- Левая часть -->
+    <div class="flex-1 flex flex-col justify-center items-start">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-5">
+        <span class="bg-gradient-to-tr from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Automate your crypto trades onchain</span>
+      </h1>
+      <p class="text-slate-300 mb-7 max-w-md text-lg">Streamline your cryptocurrency trading experience by automating your trades directly on the blockchain. Our platform offers a seamless and decentralized experience.</p>
+      <a href="#" class="bg-gradient-to-tr from-cyan-400 to-indigo-400 hover:from-indigo-400 hover:to-cyan-400 px-7 py-3 rounded-lg font-semibold text-white shadow-xl transition text-lg">Launch App</a>
+    </div>
+    <!-- Космический шар -->
+    <div class="flex-1 flex flex-col items-center relative">
+      <div class="rounded-full w-[270px] h-[270px] md:w-[360px] md:h-[360px] bg-gradient-to-tr from-[#181c34] via-cyan-400/30 to-indigo-600/40 flex items-center justify-center cosmo-glow overflow-hidden relative">
+        <svg width="330" height="330" class="absolute top-0 left-0 pointer-events-none" style="opacity:0.7">
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+              <stop offset="0%" stop-color="#7dd3fc" />
+              <stop offset="80%" stop-color="#0ea5e9" />
+              <stop offset="100%" stop-color="#181c34" />
+            </radialGradient>
+          </defs>
+          <circle cx="165" cy="165" r="150" fill="url(#glow)" />
+          <!-- Светящиеся линии/дуги -->
+          <path d="M40,180 Q165,30 290,180" stroke="#7dd3fc" stroke-width="2" fill="none"/>
+          <path d="M50,200 Q200,110 260,230" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+          <path d="M80,250 Q220,150 270,260" stroke="#818cf8" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Правая часть: список фичей -->
+    <div class="hidden md:flex flex-col gap-8 ml-10 mt-8">
+      <div class="flex items-center gap-4">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
+        </span>
+        <span class="font-medium text-white text-lg">Non-custodial</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
+        </span>
+        <span class="font-medium text-white text-lg">Orders are Irreversible</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
+        </span>
+        <span class="font-medium text-white text-lg">No Sandwich Attacks</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Космос-карточки (пример футера, можешь расширять) -->
+  <section class="w-full max-w-5xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 px-6 z-10">
+    <div class="glass rounded-xl p-6 shadow-xl text-white">
+      <div class="text-lg font-semibold mb-2">Contact</div>
+      <div class="text-sm">hello@cosmo.app</div>
+      <div class="text-sm">Support: +1 234 567 8901</div>
+    </div>
+    <div class="glass rounded-xl p-6 shadow-xl text-white flex flex-col items-center justify-center">
+      <div class="text-lg font-semibold mb-2">Events</div>
+      <div class="text-sm mb-1">24/7 Support, AMAs</div>
+      <button class="mt-3 px-5 py-2 rounded-full bg-gradient-to-tr from-cyan-400 to-indigo-400 text-white font-bold shadow hover:scale-105 transition">Join Event</button>
+    </div>
+    <div class="glass rounded-xl p-6 shadow-xl text-white">
+      <div class="text-lg font-semibold mb-2">News</div>
+      <div class="text-sm">Stay tuned for updates!</div>
+    </div>
+  </section>
+
+  <footer class="w-full max-w-6xl mx-auto text-center text-slate-500 text-sm py-10 mt-24 opacity-80">© 2024 CosmoApp. Crafted in space 🚀</footer>
 </body>
 </html>
