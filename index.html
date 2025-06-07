@@ -1,130 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" class="bg-[#0a1124] text-white">
-<head>
-  <meta charset="UTF-8">
-  <title>Cosmic Landing Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: radial-gradient(ellipse at 50% 30%, #181c34 70%, #0a1124 100%);
-    }
-    .cosmo-glow {
-      box-shadow: 0 0 40px 10px #38bdf8, 0 0 80px 20px #818cf8, 0 0 160px 40px #0ea5e9;
-    }
-    .glass {
-      background: rgba(30, 41, 59, 0.68);
-      backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(59,130,246,0.1);
-    }
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 100%;
-      opacity: 0.45;
-      pointer-events: none;
-      z-index: 0;
-    }
-  </style>
-</head>
-<body class="relative min-h-screen flex flex-col items-center">
+import Image from "next/image";
 
-  <!-- Decorative Stars (simple random placement, for effect) -->
-  <div class="pointer-events-none absolute inset-0 overflow-hidden -z-10">
-    <div class="star" style="top: 5%; left: 20%; width: 2px; height: 2px;"></div>
-    <div class="star" style="top: 13%; left: 60%; width: 1.5px; height: 1.5px;"></div>
-    <div class="star" style="top: 50%; left: 80%; width: 2.5px; height: 2.5px;"></div>
-    <div class="star" style="top: 70%; left: 30%; width: 1.2px; height: 1.2px;"></div>
-    <div class="star" style="top: 90%; left: 55%; width: 1px; height: 1px;"></div>
-    <div class="star" style="top: 40%; left: 42%; width: 1.6px; height: 1.6px;"></div>
-    <div class="star" style="top: 77%; left: 87%; width: 2.5px; height: 2.5px;"></div>
-  </div>
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-[#131722] flex">
+      {/* Левый сайдбар */}
+      <aside className="w-20 flex flex-col items-center pt-8 bg-transparent z-10">
+        <div className="mb-10">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+        </div>
+      </aside>
 
-  <!-- Навигация -->
-  <header class="w-full max-w-6xl flex items-center justify-between px-6 pt-8">
-    <div class="flex items-center gap-2">
-      <img src="https://api.iconify.design/mdi/rocket-launch.svg?color=white" alt="Logo" class="w-8 h-8" />
-      <span class="font-bold text-xl tracking-widest">CosmoApp</span>
-    </div>
-    <nav class="hidden md:flex gap-8 text-slate-200 text-sm font-semibold">
-      <a href="#" class="hover:text-cyan-400 transition">FAQs</a>
-      <a href="#" class="hover:text-cyan-400 transition">Blog</a>
-      <a href="#" class="hover:text-cyan-400 transition">Community</a>
-      <a href="#" class="hover:text-cyan-400 transition">Resources</a>
-    </nav>
-    <a href="#" class="bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 px-5 py-2 rounded-lg font-semibold text-white shadow-cyan-400/20 hover:scale-105 transition text-sm">App</a>
-  </header>
+      {/* Центр */}
+      <main className="flex-1 flex items-center justify-center relative">
+        {/* Тонкие вертикальные линии для сетки */}
+        <div className="absolute inset-0 pointer-events-none flex">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="w-px h-full bg-white/5"
+              style={{ left: `${(i + 1) * 20}%` }}
+            />
+          ))}
+        </div>
 
-  <!-- Космический шар + хиро -->
-  <section class="w-full max-w-6xl mx-auto mt-12 flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-0 px-6 z-10">
-    <!-- Левая часть -->
-    <div class="flex-1 flex flex-col justify-center items-start">
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-5">
-        <span class="bg-gradient-to-tr from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Automate your crypto trades onchain</span>
-      </h1>
-      <p class="text-slate-300 mb-7 max-w-md text-lg">Streamline your cryptocurrency trading experience by automating your trades directly on the blockchain. Our platform offers a seamless and decentralized experience.</p>
-      <a href="#" class="bg-gradient-to-tr from-cyan-400 to-indigo-400 hover:from-indigo-400 hover:to-cyan-400 px-7 py-3 rounded-lg font-semibold text-white shadow-xl transition text-lg">Launch App</a>
+        {/* Центральная композиция */}
+        <div className="relative flex flex-col items-center">
+          {/* "X" (фон) — заменено на "K18" */}
+          <span
+            className="select-none font-bold text-[230px] leading-none text-transparent"
+            style={{
+              WebkitTextStroke: "2px #3D415A",
+              textShadow: "0 10px 40px #0a0c13",
+            }}
+          >
+            K18
+          </span>
+        </div>
+      </main>
     </div>
-    <!-- Космический шар -->
-    <div class="flex-1 flex flex-col items-center relative">
-      <div class="rounded-full w-[270px] h-[270px] md:w-[360px] md:h-[360px] bg-gradient-to-tr from-[#181c34] via-cyan-400/30 to-indigo-600/40 flex items-center justify-center cosmo-glow overflow-hidden relative">
-        <svg width="330" height="330" class="absolute top-0 left-0 pointer-events-none" style="opacity:0.7">
-          <defs>
-            <radialGradient id="glow" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
-              <stop offset="0%" stop-color="#7dd3fc" />
-              <stop offset="80%" stop-color="#0ea5e9" />
-              <stop offset="100%" stop-color="#181c34" />
-            </radialGradient>
-          </defs>
-          <circle cx="165" cy="165" r="150" fill="url(#glow)" />
-          <!-- Светящиеся линии/дуги -->
-          <path d="M40,180 Q165,30 290,180" stroke="#7dd3fc" stroke-width="2" fill="none"/>
-          <path d="M50,200 Q200,110 260,230" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
-          <path d="M80,250 Q220,150 270,260" stroke="#818cf8" stroke-width="1" fill="none"/>
-        </svg>
-      </div>
-    </div>
-    <!-- Правая часть: список фичей -->
-    <div class="hidden md:flex flex-col gap-8 ml-10 mt-8">
-      <div class="flex items-center gap-4">
-        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
-        </span>
-        <span class="font-medium text-white text-lg">Non-custodial</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
-        </span>
-        <span class="font-medium text-white text-lg">Orders are Irreversible</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 via-blue-500 to-fuchsia-400 flex items-center justify-center shadow-md">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2 2 4-4"/></svg>
-        </span>
-        <span class="font-medium text-white text-lg">No Sandwich Attacks</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Космос-карточки (пример футера, можешь расширять) -->
-  <section class="w-full max-w-5xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 px-6 z-10">
-    <div class="glass rounded-xl p-6 shadow-xl text-white">
-      <div class="text-lg font-semibold mb-2">Contact</div>
-      <div class="text-sm">hello@cosmo.app</div>
-      <div class="text-sm">Support: +1 234 567 8901</div>
-    </div>
-    <div class="glass rounded-xl p-6 shadow-xl text-white flex flex-col items-center justify-center">
-      <div class="text-lg font-semibold mb-2">Events</div>
-      <div class="text-sm mb-1">24/7 Support, AMAs</div>
-      <button class="mt-3 px-5 py-2 rounded-full bg-gradient-to-tr from-cyan-400 to-indigo-400 text-white font-bold shadow hover:scale-105 transition">Join Event</button>
-    </div>
-    <div class="glass rounded-xl p-6 shadow-xl text-white">
-      <div class="text-lg font-semibold mb-2">News</div>
-      <div class="text-sm">Stay tuned for updates!</div>
-    </div>
-  </section>
-
-  <footer class="w-full max-w-6xl mx-auto text-center text-slate-500 text-sm py-10 mt-24 opacity-80">© 2024 CosmoApp. Crafted in space 🚀</footer>
-</body>
-</html>
+  );
+}
