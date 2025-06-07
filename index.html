@@ -2,59 +2,75 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>K18 | Korolev Denis</title>
+  <title>K18 — Korolev Denis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fira Sans Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Fira Sans', Arial, sans-serif; }
-    /* Вертикальные линии */
-    .vline {
-      background: rgba(255,255,255,0.07);
-      width: 1px;
+    html, body {
+      min-height: 100vh;
+      background: #151515 !important;
+      padding: 0;
+      margin: 0;
+      font-family: 'Fira Sans', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    .gridline {
       position: absolute;
       top: 0; bottom: 0;
-      z-index: 10;
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+      z-index: 3;
     }
+    ::-webkit-scrollbar { display: none; }
   </style>
 </head>
-<body class="bg-[#151515] min-h-screen relative overflow-hidden">
-  <!-- Бургер -->
-  <div class="absolute top-7 right-10 z-30">
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect y="7" width="36" height="3" rx="1.5" fill="#fff"/><rect y="16.5" width="36" height="3" rx="1.5" fill="#fff"/><rect y="26" width="36" height="3" rx="1.5" fill="#fff"/></svg>
-  </div>
-  <!-- Логотип -->
-  <div class="absolute top-7 left-10 z-30">
-    <img src="public/logo.png" alt="logo" class="w-20 h-20 object-contain">
-  </div>
+<body class="relative min-h-screen w-full overflow-hidden">
+
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 pointer-events-none z-10">
-    <div class="vline" style="left: 20vw;"></div>
-    <div class="vline" style="left: 40vw;"></div>
-    <div class="vline" style="left: 60vw;"></div>
-    <div class="vline" style="left: 80vw;"></div>
+    <div class="gridline" style="left: 0%;"></div>
+    <div class="gridline" style="left: 20%;"></div>
+    <div class="gridline" style="left: 40%;"></div>
+    <div class="gridline" style="left: 60%;"></div>
+    <div class="gridline" style="left: 80%;"></div>
+    <div class="gridline" style="left: 100%;"></div>
   </div>
-  <!-- Контент -->
-  <div class="flex flex-row items-end justify-start h-screen w-screen relative z-20">
-    <!-- Левая часть с логотипом и текстом -->
-    <div class="flex flex-col justify-center pl-[5vw] pb-28" style="height: 100vh; width: 34vw;">
-      <img src="public/logo.png" alt="K18 Logo" class="w-[240px] xl:w-[300px] h-auto mb-7">
-      <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 whitespace-nowrap"
-          style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; margin-left: -3px;">
-        KOROLEV DENIS
-      </h1>
-      <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase text-left"
-           style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em; margin-left: -3px;">
-        DESIGNER | WEB | PHOTOGRAPHER
-      </div>
+
+  <!-- Логотип слева сверху (симметрично с бургером) -->
+  <div class="absolute top-10 left-10 z-20">
+    <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
+  </div>
+
+  <!-- Бургер-меню справа сверху -->
+  <div class="absolute top-10 right-10 z-20">
+    <button class="flex flex-col gap-[7px]">
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+    </button>
+  </div>
+
+  <!-- Центральный контент -->
+  <div class="absolute left-[20vw] top-1/2 -translate-y-1/2 z-20 flex flex-col items-start" style="width: 520px; max-width: 34vw;">
+    <img src="public/logo.png" alt="K18 Logo" class="w-[260px] xl:w-[320px] h-auto mb-7">
+    <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 text-left"
+        style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; width: 100%; margin-left: -3px;">
+      KOROLEV DENIS
+    </h1>
+    <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase text-left"
+         style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em; margin-left: -3px;">
+      DESIGNER | WEB | PHOTOGRAPHER
     </div>
-    <!-- Фото -->
-    <div class="flex items-end h-full ml-28">
-      <img src="public/my.png" alt="Denis Korolev"
-           class="object-contain max-h-[92vh] max-w-[440px] w-auto"
-           style="display: block;">
-    </div>
+  </div>
+
+  <!-- Фото справа, прижата к низу -->
+  <div class="absolute right-[7vw] bottom-0 flex items-end h-full z-40">
+    <img src="public/my.png" alt="Denis Korolev"
+         class="object-contain max-h-[84vh] w-auto"
+         style="min-width: 260px; max-width: 420px; display: block;">
   </div>
 </body>
 </html>
