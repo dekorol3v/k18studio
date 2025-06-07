@@ -41,12 +41,13 @@
 
   <!-- Верхний бар -->
   <div class="relative z-20 flex flex-row items-center h-24 w-full px-10" style="font-family: 'Fira Sans', Arial, sans-serif;">
-    <!-- Логотип слева -->
-    <div class="flex-shrink-0 flex items-center h-full" style="height: 56px;">
-      <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
+   <div class="relative z-20 w-full h-24">
+  <!-- Логотип слева -->
+  <div class="absolute left-10 top-1/2 -translate-y-1/2 flex-shrink-0 flex items-center" style="height: 56px;">
+    <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
     </div>
-    <!-- Меню -->
-    <nav class="flex items-center h-full ml-[calc(20vw-40px)] gap-16">
+    <!-- Меню от второй линии -->
+    <nav class="flex items-center h-full absolute left-[20vw] top-0 gap-[7vw]">
       <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Главная</a>
       <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Проекты</a>
       <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Услуги</a>
