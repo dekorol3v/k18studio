@@ -27,7 +27,7 @@
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
-<body class="relative min-h-screen w-full overflow-hidden">
+<body class="relative min-h-screen w-full bg-[#151515] overflow-hidden">
 
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 pointer-events-none z-10">
@@ -43,7 +43,6 @@
   <div class="absolute top-10 left-10 z-20">
     <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
   </div>
-
   <!-- Бургер-меню справа сверху -->
   <div class="absolute top-10 right-10 z-20">
     <button class="flex flex-col gap-[7px]">
@@ -53,24 +52,27 @@
     </button>
   </div>
 
-  <!-- Центральный контент -->
-  <div class="absolute left-[20vw] top-1/2 -translate-y-1/2 z-20 flex flex-col items-start" style="width: 520px; max-width: 34vw;">
-    <img src="public/logo.png" alt="K18 Logo" class="w-[260px] xl:w-[320px] h-auto mb-7">
-    <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 text-left"
-        style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; width: 100%; margin-left: -3px;">
-      KOROLEV DENIS
-    </h1>
-    <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase text-left"
-         style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em; margin-left: -3px;">
-      DESIGNER | WEB | PHOTOGRAPHER
+  <!-- Центрированный flex-контент -->
+  <div class="flex flex-row items-end justify-center h-screen w-full relative z-20">
+    <!-- Блок с логотипом и текстом -->
+    <div class="flex flex-col items-start justify-center"
+         style="width: 520px; max-width: 34vw;">
+      <img src="public/logo.png" alt="K18 Logo" class="w-[260px] xl:w-[320px] h-auto mb-7">
+      <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 text-left whitespace-nowrap"
+          style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; width: 100%; margin-left: -3px;">
+        KOROLEV DENIS
+      </h1>
+      <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase text-left"
+           style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em; margin-left: -3px;">
+        DESIGNER | WEB | PHOTOGRAPHER
+      </div>
     </div>
-  </div>
-
-  <!-- Фото справа, прижата к низу -->
-  <div class="absolute right-[7vw] bottom-0 flex items-end h-full z-40">
-    <img src="public/my.png" alt="Denis Korolev"
-         class="object-contain max-h-[84vh] w-auto"
-         style="min-width: 260px; max-width: 420px; display: block;">
+    <!-- Фото — просто справа от текста -->
+    <div class="flex items-end h-full ml-14 xl:ml-20">
+      <img src="public/my.png" alt="Denis Korolev"
+           class="object-contain max-h-[84vh] w-auto"
+           style="min-width: 220px; max-width: 410px; display: block;">
+    </div>
   </div>
 </body>
 </html>
