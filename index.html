@@ -24,7 +24,7 @@
       background: rgba(255,255,255,0.08);
       z-index: 3;
     }
-    /* Скрываем полосу прокрутки, если есть */
+    /* Скрываем полосу прокрутки */
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
@@ -54,28 +54,31 @@
     </button>
   </div>
 
-  <!-- Контент: левый блок и фото справа -->
-  <div class="relative w-full h-screen flex items-end justify-between z-20">
-    <!-- Левый блок: строго с 20% ширины -->
-    <div class="absolute left-[20%] bottom-0 flex flex-col items-start justify-end h-full z-30" style="width: 420px; max-width: 34vw;">
-      <div class="mb-8 select-none w-full">
-        <img src="public/logo.png" alt="K18 Logo" class="w-[220px] xl:w-[280px] h-auto">
-      </div>
-      <div class="mb-2 w-full">
-        <h1 class="text-white text-4xl xl:text-5xl font-normal tracking-wider mb-3" style="font-family: Montserrat,Arial,sans-serif; letter-spacing:0.07em;">KOROLEV DENIS</h1>
-        <div class="text-gray-400 tracking-widest font-light text-base xl:text-lg uppercase" style="letter-spacing:0.09em;">
-          DESIGNER | WEB | PHOTOGRAPHER
+  <!-- Центральная композиция: логотип+текст и фото -->
+  <div class="relative flex h-screen items-center justify-start z-20">
+    <!-- Отступ слева до второй линии (20%) -->
+    <div class="ml-[20vw] flex flex-row items-center justify-start w-full h-full">
+      <!-- Логотип и текст — по центру вертикали, крупнее -->
+      <div class="flex flex-col items-start justify-center">
+        <div class="mb-9 select-none w-full">
+          <img src="public/logo.png" alt="K18 Logo" class="w-[290px] xl:w-[350px] h-auto">
+        </div>
+        <div class="mb-2 w-full">
+          <h1 class="text-white text-5xl xl:text-6xl font-normal tracking-wider mb-4" style="font-family: Montserrat,Arial,sans-serif; letter-spacing:0.07em;">
+            KOROLEV DENIS
+          </h1>
+          <div class="text-gray-400 tracking-widest font-light text-xl xl:text-2xl uppercase" style="letter-spacing:0.09em;">
+            DESIGNER | WEB | PHOTOGRAPHER
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Фото справа, прижато к низу и чуть меньше -->
-    <div class="absolute right-0 bottom-0 flex items-end justify-end h-full z-40">
-      <img src="public/my.png" alt="Denis Korolev"
-           class="object-contain max-h-[92vh] w-auto"
-           style="max-width: 520px; min-width: 320px; display: block;">
+      <!-- Фотка: по центру горизонтали, прижата к низу, чуть правее текста -->
+      <div class="flex items-end justify-center h-full ml-10">
+        <img src="public/my.png" alt="Denis Korolev"
+             class="object-contain max-h-[80vh] w-auto"
+             style="min-width: 280px; max-width: 450px; display: block;">
+      </div>
     </div>
   </div>
-
 </body>
 </html>
