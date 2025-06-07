@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>K18 — Korolev Denis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fira Sans Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html, body {
@@ -39,7 +37,7 @@
     <div class="gridline" style="left: 100%;"></div>
   </div>
 
-  <!-- Логотип слева сверху (симметрично с бургером) -->
+  <!-- Логотип слева сверху -->
   <div class="absolute top-10 left-10 z-20">
     <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
   </div>
@@ -52,9 +50,9 @@
     </button>
   </div>
 
-  <!-- Центрированный flex-контент -->
-  <div class="flex flex-row items-end justify-center h-screen w-full relative z-20">
-    <!-- Блок с логотипом и текстом -->
+  <!-- Центр: логотип+текст ОТ второй линии (40%), фото справа -->
+  <div class="absolute left-[40vw] top-1/2 -translate-y-1/2 flex flex-row items-end z-20">
+    <!-- Логотип и текст -->
     <div class="flex flex-col items-start justify-center"
          style="width: 520px; max-width: 34vw;">
       <img src="public/logo.png" alt="K18 Logo" class="w-[260px] xl:w-[320px] h-auto mb-7">
@@ -67,12 +65,13 @@
         DESIGNER | WEB | PHOTOGRAPHER
       </div>
     </div>
-    <!-- Фото — просто справа от текста -->
+    <!-- Фото справа от текста -->
     <div class="flex items-end h-full ml-14 xl:ml-20">
       <img src="public/my.png" alt="Denis Korolev"
            class="object-contain max-h-[84vh] w-auto"
            style="min-width: 220px; max-width: 410px; display: block;">
     </div>
   </div>
+
 </body>
 </html>
