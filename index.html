@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="bg-[#151515] text-white">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>K18 Studio</title>
@@ -12,26 +12,19 @@
       background: #151515 !important;
       overflow-x: hidden;
     }
-    .k18-shadow {
-      text-shadow:
-        0 6px 36px #0ea5e9bb,
-        0 0px 1px #fff,
-        0 0 0 transparent;
-      -webkit-text-stroke: 2px #38bdf8;
-    }
     .gridline {
       position: absolute;
       top: 0; bottom: 0;
       width: 1px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.13);
       z-index: 1;
     }
     .scroll-text {
       writing-mode: vertical-rl;
-      letter-spacing: .2em;
+      letter-spacing: .15em;
       font-size: 0.85rem;
-      color: #38bdf8cc;
-      opacity: 0.6;
+      color: #fff;
+      opacity: 0.5;
       font-family: monospace;
     }
   </style>
@@ -41,46 +34,39 @@
   <!-- Левый сайдбар -->
   <aside class="w-20 min-h-screen flex flex-col items-center py-10 justify-between z-20">
     <div class="mb-8">
-      <img src="logo.png" alt="Logo" width="44" height="44" class="object-contain rounded-full border-2 border-cyan-400 shadow-md">
+      <img src="logo.png" alt="Logo" width="48" height="48" class="object-contain">
     </div>
-    <nav class="flex flex-col gap-7 mt-4 mb-8 text-slate-400 text-2xl items-center">
-      <a href="#" class="hover:text-cyan-400" title="Dribbble">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M4 4c6 6 8 12 12 12"/></svg>
-      </a>
-      <a href="#" class="hover:text-cyan-400" title="Behance">
-        <svg width="20" height="20" fill="currentColor"><rect x="3" y="6" width="4" height="8" rx="1"/><rect x="9" y="6" width="8" height="2" rx="1"/><rect x="9" y="12" width="8" height="2" rx="1"/></svg>
-      </a>
-      <a href="#" class="hover:text-cyan-400" title="Instagram">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="14" height="14" rx="4"/><circle cx="14.5" cy="5.5" r="1"/><circle cx="10" cy="10" r="4"/></svg>
-      </a>
-    </nav>
+    <!-- Место для иконок — пока убрано -->
   </aside>
 
   <!-- Центральная часть -->
   <main class="flex-1 flex flex-col items-center justify-center relative z-10">
-    <!-- Вертикальные линии сетки -->
-    <div class="gridline" style="left: 25vw;"></div>
-    <div class="gridline" style="left: 50vw;"></div>
-    <div class="gridline" style="left: 75vw;"></div>
+    <!-- 5 вертикальных линий (4 деления) -->
+    <div class="gridline" style="left: 0vw;"></div>
+    <div class="gridline" style="left: 20vw;"></div>
+    <div class="gridline" style="left: 40vw;"></div>
+    <div class="gridline" style="left: 60vw;"></div>
+    <div class="gridline" style="left: 80vw;"></div>
+    <div class="gridline" style="left: 100vw;"></div>
 
     <!-- Меню вверху справа (бургер) -->
     <div class="absolute top-7 right-8">
       <button class="flex flex-col gap-1.5 group">
-        <span class="block w-7 h-1 rounded-full bg-white transition group-hover:bg-cyan-400"></span>
-        <span class="block w-7 h-1 rounded-full bg-white transition group-hover:bg-cyan-400"></span>
-        <span class="block w-7 h-1 rounded-full bg-white transition group-hover:bg-cyan-400"></span>
+        <span class="block w-7 h-1 rounded-full bg-white transition"></span>
+        <span class="block w-7 h-1 rounded-full bg-white transition"></span>
+        <span class="block w-7 h-1 rounded-full bg-white transition"></span>
       </button>
     </div>
 
     <!-- Контент по центру -->
     <div class="flex flex-col items-center justify-center relative min-h-[70vh] z-10">
-      <span class="block font-black uppercase text-[80px] sm:text-[140px] md:text-[200px] lg:text-[240px] tracking-widest k18-shadow select-none text-transparent bg-clip-text"
+      <span class="block font-black uppercase text-[80px] sm:text-[140px] md:text-[200px] lg:text-[240px] tracking-widest select-none text-white"
         style="line-height: 0.95;">
         K18
       </span>
       <div class="mt-2 text-center">
         <h1 class="text-2xl md:text-3xl tracking-[0.2em] font-semibold text-white">DENIS KOROLЁV</h1>
-        <div class="text-cyan-300 tracking-widest text-base md:text-lg mt-1 uppercase">Web & UI/UX Developer</div>
+        <div class="tracking-widest text-base md:text-lg mt-1 uppercase opacity-60">Web & UI/UX Developer</div>
       </div>
     </div>
 
