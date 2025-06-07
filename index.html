@@ -9,14 +9,14 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
+    html, body {
       min-height: 100vh;
       background: #151515 !important;
-      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
       font-family: 'Montserrat', Arial, sans-serif;
-    }
-    .main-border {
-      border: 24px solid #191919;
+      overflow-x: hidden;
     }
     .gridline {
       position: absolute;
@@ -25,63 +25,53 @@
       background: rgba(255,255,255,0.08);
       z-index: 3;
     }
-    .logo-top {
-      margin-left: 7px;
-      margin-top: 7px;
-    }
-    @media (max-width: 1023px) {
-      .main-border {
-        border-width: 12px !important;
-      }
-      .logo-top { margin-left: 0; margin-top: 0;}
-    }
   </style>
 </head>
-<body>
-  <div class="relative min-h-screen w-full main-border flex items-center justify-center overflow-hidden">
+<body class="min-h-screen w-full overflow-hidden">
 
-    <!-- Сеточные линии -->
-    <div class="absolute inset-0 pointer-events-none z-10">
-      <div class="gridline" style="left: 0%;"></div>
-      <div class="gridline" style="left: 20%;"></div>
-      <div class="gridline" style="left: 40%;"></div>
-      <div class="gridline" style="left: 60%;"></div>
-      <div class="gridline" style="left: 80%;"></div>
-      <div class="gridline" style="left: 100%;"></div>
-    </div>
+  <!-- Сеточные линии -->
+  <div class="absolute inset-0 pointer-events-none z-10">
+    <div class="gridline" style="left: 0%;"></div>
+    <div class="gridline" style="left: 20%;"></div>
+    <div class="gridline" style="left: 40%;"></div>
+    <div class="gridline" style="left: 60%;"></div>
+    <div class="gridline" style="left: 80%;"></div>
+    <div class="gridline" style="left: 100%;"></div>
+  </div>
 
-    <!-- Логотип сверху слева -->
-    <div class="absolute top-8 left-12 z-20 logo-top">
-      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
-    </div>
+  <!-- Логотип сверху слева -->
+  <div class="absolute top-8 left-12 z-20">
+    <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
+  </div>
 
-    <!-- Меню-бургер справа -->
-    <div class="absolute top-10 right-14 z-20">
-      <button class="flex flex-col gap-2">
-        <span class="block w-9 h-[6px] bg-white rounded"></span>
-        <span class="block w-9 h-[6px] bg-white rounded"></span>
-        <span class="block w-9 h-[6px] bg-white rounded"></span>
-      </button>
-    </div>
+  <!-- Меню-бургер справа -->
+  <div class="absolute top-10 right-14 z-20">
+    <button class="flex flex-col gap-2">
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+      <span class="block w-9 h-[6px] bg-white rounded"></span>
+    </button>
+  </div>
 
-    <div class="flex w-full max-w-[1600px] mx-auto items-center justify-between relative z-20 px-4 xl:px-0">
-      <!-- Левая часть (K18 + текст) -->
-      <div class="flex-1 flex flex-col items-start justify-center pl-2 xl:pl-12">
-        <!-- Логотип К18 в центре (можешь заменить на svg, если надо) -->
-        <div class="mb-7 select-none" style="min-width:340px;">
-          <img src="public/logo.png" alt="K18 Logo" class="w-[230px] xl:w-[300px] 2xl:w-[340px] h-auto">
-        </div>
-        <div>
-          <h1 class="text-white text-4xl xl:text-5xl font-normal tracking-wider mb-3" style="font-family: Montserrat,Arial,sans-serif; letter-spacing:0.07em;">KOROLEV DENIS</h1>
-          <div class="text-gray-400 tracking-widest font-light text-base xl:text-lg uppercase" style="letter-spacing:0.09em;">
-            DESIGNER | WEB | PHOTOGRAPHER
-          </div>
+  <!-- Контент по центру -->
+  <div class="relative flex w-full h-screen items-center justify-between z-20">
+
+    <!-- Левая часть (K18 + текст) -->
+    <div class="flex-1 flex flex-col items-start justify-center pl-16">
+      <div class="mb-7 select-none" style="min-width:340px;">
+        <img src="public/logo.png" alt="K18 Logo" class="w-[230px] xl:w-[300px] 2xl:w-[340px] h-auto">
+      </div>
+      <div>
+        <h1 class="text-white text-4xl xl:text-5xl font-normal tracking-wider mb-3" style="font-family: Montserrat,Arial,sans-serif; letter-spacing:0.07em;">KOROLEV DENIS</h1>
+        <div class="text-gray-400 tracking-widest font-light text-base xl:text-lg uppercase" style="letter-spacing:0.09em;">
+          DESIGNER | WEB | PHOTOGRAPHER
         </div>
       </div>
-      <!-- Правая часть: Фото до низа -->
-      <div class="flex-1 flex items-end justify-center z-30">
-        <img src="public/my.png" alt="Denis Korolev" class="h-[78vh] xl:h-[90vh] w-auto object-contain select-none pointer-events-none" draggable="false" style="filter: drop-shadow(0 16px 42px #0009);">
-      </div>
+    </div>
+
+    <!-- Правая часть: Фото до низа и края -->
+    <div class="flex-1 flex items-end justify-center z-30 h-full">
+      <img src="public/my.png" alt="Denis Korolev" class="h-full w-auto max-h-screen object-contain select-none pointer-events-none" draggable="false" style="filter: drop-shadow(0 16px 42px #0009);">
     </div>
   </div>
 </body>
