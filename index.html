@@ -4,39 +4,44 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#131722] flex">
       {/* Левый сайдбар */}
-      <aside className="w-20 flex flex-col items-center pt-8 bg-transparent z-10">
-        <div className="mb-10">
+      <aside className="w-20 flex flex-col items-center pt-10 bg-transparent z-10">
+        <div className="mb-12">
           <Image
             src="/logo.png"
             alt="Logo"
-            width={40}
-            height={40}
+            width={48}
+            height={48}
             className="object-contain"
+            priority
           />
         </div>
       </aside>
 
       {/* Центр */}
-      <main className="flex-1 flex items-center justify-center relative">
+      <main className="flex-1 flex items-center justify-center relative overflow-hidden">
         {/* Тонкие вертикальные линии для сетки */}
-        <div className="absolute inset-0 pointer-events-none flex">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="w-px h-full bg-white/5"
-              style={{ left: `${(i + 1) * 20}%` }}
-            />
-          ))}
-        </div>
+        {[1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            className="absolute top-0 h-full w-px bg-white/5"
+            style={{
+              left: `${(i * 20)}%`,
+            }}
+          />
+        ))}
 
         {/* Центральная композиция */}
-        <div className="relative flex flex-col items-center">
-          {/* "X" (фон) — заменено на "K18" */}
+        <div className="relative flex flex-col items-center z-10">
+          {/* Фоновое светящееся пятно */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1]">
+            <div className="w-[380px] h-[380px] rounded-full bg-cyan-400 blur-3xl opacity-20"></div>
+          </div>
+          {/* "K18" (фон) */}
           <span
-            className="select-none font-bold text-[230px] leading-none text-transparent"
+            className="select-none font-bold text-[160px] md:text-[230px] leading-none text-transparent"
             style={{
-              WebkitTextStroke: "2px #3D415A",
-              textShadow: "0 10px 40px #0a0c13",
+              WebkitTextStroke: "2px #38bdf8",
+              textShadow: "0 10px 40px #0a0c13, 0 0 60px #0ea5e9",
             }}
           >
             K18
