@@ -117,28 +117,30 @@
       inset: 0;
       pointer-events: none;
     
-      /* базовая видимая сетка по всему экрану */
+      /* Более яркая базовая сетка */
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
     
       background-size: 20px 20px;
       background-position: 0 0;
       z-index: 1;
     
-      /* Маска подсветки вокруг курсора для усиления яркости */
+      /* Усиленная подсветка вокруг курсора */
       mask-image:
-        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
-        radial-gradient(circle 180px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.8) 0%, transparent 100%);
+        linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+        radial-gradient(circle 220px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.95) 0%, transparent 80%);
       -webkit-mask-image:
-        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
-        radial-gradient(circle 180px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.8) 0%, transparent 100%);
+        linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+        radial-gradient(circle 220px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.95) 0%, transparent 80%);
       mask-repeat: no-repeat;
       -webkit-mask-repeat: no-repeat;
     
       transition: mask-image 0.3s ease;
       opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
     }
+
   </style>
 </head>
 <body class="relative w-full h-screen">
