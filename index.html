@@ -152,9 +152,12 @@
     }
     
     .shiny-text .invisible {
-      opacity: 0 !important;
+      opacity: 0;
+      width: 0.65em; /* ширина пробела, чтобы не прыгал текст */
       animation: none !important;
+      display: inline-block;
     }
+
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -322,12 +325,17 @@
   
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
-    let span = document.createElement('span');
-    span.textContent = char;
-    if (char === ' ') span.className = 'invisible';
-    else span.style.animationDelay = `${i * 0.08}s`;
+    const span = document.createElement('span');
+    if (char === ' ') {
+      span.className = 'invisible';
+      span.innerHTML = '&nbsp;'; // вставляем неразрывный пробел
+    } else {
+      span.textContent = char;
+      span.style.animationDelay = `${i * 0.08}s`;
+    }
     shinyText.appendChild(span);
   }
+
   </script>
 </body>
 </html>
