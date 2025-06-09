@@ -159,37 +159,51 @@
     }
 
     @media (max-width: 800px) {
-    /* Вертикальные линии — оставляем только 4 */
-    .gridline { display: none !important; }
-    .gridline.mobile { display: block !important; }
-  
-    /* Прячем фото */
+    /* Фото сотрудника убираем */
     .main-photo { display: none !important; }
   
-    /* Центральный блок: выравниваем по 2-й линии */
+    /* Центральный блок: строго по второй линии (left: 20%), ширина до пятой (width: 60%) */
     section[style*="left: 20%"] {
-      left: 33.33% !important;
-      width: 66.66% !important;
+      left: 20% !important;
+      width: 60% !important;
       min-width: 0 !important;
       position: static !important;
       text-align: left !important;
       margin: 0 !important;
-      padding: 0 10px;
+      padding: 0 4vw;
     }
-  
-    /* Центруем контент, делаем компактнее */
+    /* Заголовок и подзаголовок компактнее */
     h1 {
-      font-size: 1.2rem !important;
+      font-size: 1.1rem !important;
+      margin-bottom: 8px !important;
       white-space: normal !important;
     }
+    .shiny-text {
+      font-size: 0.9rem !important;
+      margin-top: 8px;
+      left: 0 !important;
+      top: 0 !important;
+    }
   
-    /* Бургер-меню */
-    .burger {
-      display: block !important;
+    /* Соцсети тоже по второй линии */
+    .fixed.bottom-8.left-8 {
+      left: 20% !important;
+      bottom: 18px !important;
+      flex-direction: row !important;
+      gap: 18px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      justify-content: flex-start !important;
+      width: auto !important;
+      position: fixed !important;
     }
-    nav {
-      display: none !important;
+    .fixed.bottom-8.left-8 a {
+      display: inline-flex !important;
     }
+  
+    /* Меню — бургер */
+    .burger { display: flex !important; }
+    nav { display: none !important; }
     .menu-mobile {
       display: none;
       position: absolute;
@@ -199,14 +213,12 @@
       background: #191919;
       z-index: 100;
       padding: 16px 0 8px 0;
-      text-align: center;
+      text-align: left;
     }
-    .menu-mobile.active {
-      display: block;
-    }
+    .menu-mobile.active { display: block; }
     .menu-mobile a {
       display: block;
-      margin: 10px 0;
+      margin: 10px 0 10px 20%;
       font-size: 1.15rem;
       color: #fff;
       font-weight: 500;
@@ -214,13 +226,11 @@
       text-decoration: none;
       transition: opacity .2s;
     }
-    .menu-mobile a:active, .menu-mobile a:hover {
-      opacity: 1;
-    }
+    .menu-mobile a:active, .menu-mobile a:hover { opacity: 1; }
   }
   @media (max-width: 420px) {
     h1 { font-size: 0.95rem !important; }
-    section[style*="left: 33.33%"] { padding: 0 4vw; }
+    section[style*="left: 20%"] { padding: 0 2vw; }
   }
 
   </style>
@@ -235,11 +245,6 @@
     <div class="gridline" style="left: 60%;"></div>   
     <div class="gridline" style="left: 80%;"></div>   
     <div class="gridline" style="left: 100%;"></div>
-    <!-- 4 линии для мобилы: добавлен класс mobile -->
-    <div class="gridline mobile" style="left: 0%; display:none;"></div>
-    <div class="gridline mobile" style="left: 33.33%; display:none;"></div>
-    <div class="gridline mobile" style="left: 66.66%; display:none;"></div>
-    <div class="gridline mobile" style="left: 100%; display:none;"></div>
   </div>
 
   <!-- Анимированные фоны между линиями -->
@@ -426,14 +431,16 @@
     shinyText.appendChild(span);
   }
 
-  // Бургер-меню
+  // Бургер-меню для мобилы
   const burger = document.querySelector('.burger');
   const menuMobile = document.getElementById('menuMobile');
-  burger.addEventListener('click', () => {
-    menuMobile.classList.toggle('active');
-    burger.classList.toggle('open');
-    document.body.style.overflow = menuMobile.classList.contains('active') ? 'hidden' : '';
-  });
+  if (burger && menuMobile) {
+    burger.addEventListener('click', () => {
+      menuMobile.classList.toggle('active');
+      burger.classList.toggle('open');
+      document.body.style.overflow = menuMobile.classList.contains('active') ? 'hidden' : '';
+    });
+  }
     
   </script>
 </body>
