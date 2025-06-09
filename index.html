@@ -34,7 +34,6 @@
       opacity: 0.85;
       transition: opacity 0.3s ease;
     }
-
     .menu-link::after {
       content: '';
       display: block;
@@ -45,97 +44,45 @@
       transition: transform 0.3s ease;
       margin-top: 4px;
     }
+    .menu-link:hover { opacity: 1; }
+    .menu-link:hover::after { transform: scaleX(1); }
+    .menu-link.active { opacity: 1; }
+    .menu-link.active::after { transform: scaleX(1); }
 
-    .menu-link:hover {
-      opacity: 1;
-    }
-
-    .menu-link:hover::after {
-      transform: scaleX(1);
-    }
-
-    .menu-link.active {
-      opacity: 1;
-    }
-
-    .menu-link.active::after {
-      transform: scaleX(1);
-    }
-
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-
-    .animate-blink {
-      animation: blink 1s step-start infinite;
-    }
+    @keyframes blink { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
+    .animate-blink { animation: blink 1s step-start infinite; }
 
     ::-webkit-scrollbar { display: none; }
 
-    @keyframes pulse-bg {
-    0%, 100% { background-color: #151515; }
-    50%      { background-color: #1e1e1e; }
-    }
-    
-    .bg-animate {
-      animation: pulse-bg 6s ease-in-out infinite;
-      z-index: 0;
-      position: relative; /* нужно, чтобы z-index работал */
-    }
+    @keyframes pulse-bg { 0%, 100% { background-color: #151515; } 50% { background-color: #1e1e1e; } }
+    .bg-animate { animation: pulse-bg 6s ease-in-out infinite; z-index: 0; position: relative; }
     .bg-delay-1 { animation-delay: 0s; }
     .bg-delay-2 { animation-delay: 1s; }
     .bg-delay-3 { animation-delay: 2s; }
     .bg-delay-4 { animation-delay: 3s; }
     .bg-delay-5 { animation-delay: 4s; }
+    .bg-section { background-color: #151515; transition: background-color 1s ease; }
+    .bg-highlight { background-color: #1e1e1e !important; }
 
-    .bg-section {
-      background-color: #151515;
-      transition: background-color 1s ease;
-    }
+    .hover-icon { transition: transform 0.25s ease; }
+    .hover-icon:hover { transform: scale(1.15); }
+    .gridline:hover { background: rgba(255,255,255,0.15); transition: background 0.3s ease; }
 
-    .bg-highlight {
-      background-color: #1e1e1e !important;
-    }
-
-    .hover-icon {
-    transition: transform 0.25s ease;
-    }
-    
-    .hover-icon:hover {
-      transform: scale(1.15);
-    }
-
-    .gridline:hover {
-      background: rgba(255,255,255,0.15);
-      transition: background 0.3s ease;
-    }
-
-    /* Общая сетка на фоне */
     #static-grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    
-      /* Базовая сетка с умеренной яркостью */
+      position: fixed; inset: 0; pointer-events: none;
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
-    
       background-size: 20px 20px;
       background-position: 0 0;
       z-index: 1;
-    
-      /* Маска с сильной засветкой в области курсора */
       mask-image:
         linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
         radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,1) 0%, transparent 80%);
       -webkit-mask-image:
         linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
         radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,1) 0%, transparent 80%);
-      mask-repeat: no-repeat;
-      -webkit-mask-repeat: no-repeat;
-    
+      mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
       transition: mask-image 0.3s ease;
       opacity: 1;
     }
@@ -144,18 +91,41 @@
       0%, 16.6%, 100% { color: #6b7280; }
       8.3% { color: #a3a3a3; }
     }
-    
     .shiny-text span {
       display: inline-block;
       color: #6b7280;
       animation: textShine 12s linear infinite;
     }
-    
     .shiny-text .invisible {
       opacity: 0;
-      width: 0.65em; /* ширина пробела, чтобы не прыгал текст */
+      width: 0.65em;
       animation: none !important;
       display: inline-block;
+    }
+
+    /* === MOBILE ADAPTATION === */
+    @media (max-width: 640px) {
+      /* 4 grid columns на мобиле (чтобы меню и контент не прилипали к краям) */
+      .gridline:nth-child(2) { left: 25% !important; }
+      .gridline:nth-child(3) { left: 50% !important; }
+      .gridline:nth-child(4) { left: 75% !important; }
+      .gridline:nth-child(5), .gridline:nth-child(6), .gridline:nth-child(7) { display: none; }
+      #static-grid { background-size: 25vw 24px; }
+      .adaptive-section {
+        left: 8% !important;
+        width: 84% !important;
+        top: 100px !important;
+      }
+      .adaptive-photo {
+        left: 25% !important;
+        width: 50% !important;
+        top: unset !important;
+        bottom: 100px !important;
+        max-width: 160px !important;
+      }
+      .adaptive-title { font-size: 1.3rem !important; }
+      .adaptive-sub { font-size: 0.87rem !important; }
+      .social-mobile { left: 50% !important; transform: translateX(-50%) !important; bottom: 20px !important; flex-direction: row !important; gap: 1.25rem !important;}
     }
 
   </style>
@@ -164,12 +134,12 @@
   
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 z-0">
-    <div class="gridline" style="left: 0%;"></div>    
-    <div class="gridline" style="left: 20%;"></div>   
-    <div class="gridline" style="left: 40%;"></div>   
-    <div class="gridline" style="left: 60%;"></div>   
-    <div class="gridline" style="left: 80%;"></div>   
-    <div class="gridline" style="left: 100%;"></div>  
+    <div class="gridline" style="left: 0%;"></div>
+    <div class="gridline" style="left: 20%;"></div>
+    <div class="gridline" style="left: 40%;"></div>
+    <div class="gridline" style="left: 60%;"></div>
+    <div class="gridline" style="left: 80%;"></div>
+    <div class="gridline" style="left: 100%;"></div>
   </div>
 
   <!-- Анимированные фоны между линиями -->
@@ -181,51 +151,64 @@
     <div class="w-[20%] bg-section" id="block-5"></div>
   </div>
 
-  <!-- Сетка (поднимаем в иерархии выше фона) -->
+  <!-- Сетка -->
   <div class="absolute inset-0 z-[1] pointer-events-none">
     <div id="static-grid"></div>
   </div>
   
-  <!-- Верхнее меню -->
+  <!-- Верхнее меню и бургер -->
   <header class="relative w-full h-24 z-10">
-
     <!-- Логотип -->
     <div class="absolute top-8 left-8">
       <img src="public/logo.png" alt="K18 Logo" class="h-12 w-auto">
     </div>
-
-    <!-- Меню -->
-    <nav class="absolute top-1/2 -translate-y-1/2 w-full z-10">
+    <!-- Бургер-меню для мобилки -->
+    <div class="absolute top-8 right-8 xl:hidden block z-50 sm:block md:block" id="burger-btn">
+      <button class="w-10 h-10 flex flex-col justify-center items-center" aria-label="Меню">
+        <span class="block w-7 h-1 mb-1 bg-white rounded"></span>
+        <span class="block w-7 h-1 mb-1 bg-white rounded"></span>
+        <span class="block w-7 h-1 bg-white rounded"></span>
+      </button>
+    </div>
+    <!-- Мобильное меню (по умолчанию скрыто) -->
+    <nav id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#151515] flex-col justify-center items-center gap-8 text-xl text-white font-bold z-40 hidden sm:flex">
+      <a href="/" class="block mb-6" onclick="closeMenu()">Главная</a>
+      <a href="/projects" class="block mb-6" onclick="closeMenu()">Проекты</a>
+      <a href="/services" class="block mb-6" onclick="closeMenu()">Услуги</a>
+      <a href="/contacts" class="block mb-6" onclick="closeMenu()">Команда</a>
+      <a href="/about" class="block" onclick="closeMenu()">Об авторе</a>
+    </nav>
+    <!-- Десктопное меню -->
+    <nav class="absolute top-1/2 -translate-y-1/2 w-full z-10 hidden xl:block">
       <a href="/" class="menu-link" style="left: 20%;">Главная</a>
       <a href="/projects" class="menu-link" style="left: 30%;">Проекты</a>
       <a href="/services" class="menu-link" style="left: 40%;">Услуги</a>
       <a href="/contacts" class="menu-link" style="left: 50%;">Команда</a>
       <a href="/about" class="menu-link" style="left: 60%;">Об авторе</a>
     </nav>
-
   </header>
 
   <!-- Центральный блок: логотип и текст -->
-  <section class="absolute" style="left: 20%; top: 35%; width: 60%;">
+  <section class="absolute adaptive-section" style="left: 20%; top: 35%; width: 60%;">
     <!-- Логотип -->
     <img src="public/logo.png" alt="" class="w-[240px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
   
     <!-- Текст с эффектом печати -->
-    <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap">
+    <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap adaptive-title">
       <span id="typed-text"></span><span id="cursor" class="text-white animate-blink">|</span>
     </h1>
   
     <!-- Подзаголовок: строго по левой границе блока (2-я линия) -->
     <div style="position: relative;">
-      <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text"
+      <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text adaptive-sub"
          style="position: absolute; left: 0; top: 0.5rem;">
         Уникальность — не тренд, а стандарт.
       </p>
     </div>
   </section>
 
-  <!-- Соцсети внизу на первой вертикальной линии -->
-  <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3">
+  <!-- Соцсети, адаптируемые -->
+  <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3 social-mobile">
     <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
       <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6 hover-icon">
     </a>
@@ -234,8 +217,8 @@
     </a>
   </div>
 
-  <!-- Фото между 3 и 5 линией, центрировано и немного уменьшено -->
-  <div class="absolute left-[40%] w-[40%] top-24 bottom-0 flex justify-center items-end z-10 overflow-hidden">
+  <!-- Фото между 3 и 5 линией, центрировано и уменьшено для мобилки -->
+  <div class="absolute left-[40%] w-[40%] top-24 bottom-0 flex justify-center items-end z-10 overflow-hidden adaptive-photo">
     <img src="public/my.png" alt="My Photo" class="w-[60%] max-w-none h-auto object-contain">
   </div>
   
@@ -253,11 +236,22 @@
     }
   });
 
+  // Мобильное меню — бургер
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (burgerBtn) {
+    burgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+  function closeMenu() {
+    mobileMenu.classList.add('hidden');
+  }
+
   // Анимация печати/стирания текста
   const typedText = document.getElementById("typed-text");
   const cursor = document.getElementById("cursor");
   const typingText = "KOROLEV DENIS";
-
   let index = 0;
   let typing = true;
 
@@ -271,7 +265,7 @@
         setTimeout(() => {
           typing = false;
           loopAnimation();
-        }, 15000); // пауза 15 сек после полной строки
+        }, 15000);
       }
     } else {
       if (index > 0) {
@@ -290,34 +284,26 @@
     const total = 5;
     const randomIndex = Math.floor(Math.random() * total) + 1;
     const el = document.getElementById(`block-${randomIndex}`);
-
     el.classList.add('bg-highlight');
-
-    setTimeout(() => {
-      el.classList.remove('bg-highlight');
-    }, 1000); // длительность подсветки
-
-    setTimeout(randomFlashLoop, 2000); // через секунду другой блок
+    setTimeout(() => { el.classList.remove('bg-highlight'); }, 1000);
+    setTimeout(randomFlashLoop, 2000);
   }
 
   window.addEventListener('DOMContentLoaded', () => {
     cursor.classList.add("animate-blink");
     loopAnimation();
-    randomFlashLoop(); // запускаем эффект фона
+    randomFlashLoop();
   });
 
   const grid = document.getElementById('static-grid');
-
   let hideTimeout;
-  
   document.addEventListener('mousemove', e => {
     grid.style.setProperty('--x', `${e.clientX}px`);
     grid.style.setProperty('--y', `${e.clientY}px`);
     grid.style.opacity = '1';
-  
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
-      grid.style.opacity = '0.4'; // оставляем сетку немного видимой без подсветки
+      grid.style.opacity = '0.4';
     }, 1000);
   });
 
@@ -325,9 +311,7 @@
   const shinyText = document.querySelector('.shiny-text');
   const text = shinyText.textContent;
   shinyText.textContent = '';
-  
-  const trimmedText = text.replace(/^\s+/, ''); // убираем ведущие пробелы
-  
+  const trimmedText = text.replace(/^\s+/, '');
   for (let i = 0; i < trimmedText.length; i++) {
     const char = trimmedText[i];
     const span = document.createElement('span');
@@ -340,7 +324,6 @@
     }
     shinyText.appendChild(span);
   }
-
   </script>
 </body>
 </html>
