@@ -140,17 +140,19 @@
       opacity: 1;
     }
 
-    .shiny-text {
-      color: #6b7280; /* базовый цвет — text-neutral-500 */
+    .shiny-text span {
+      display: inline-block;
+      color: #6b7280;
       animation: textShine 5s ease-in-out infinite;
+      animation-fill-mode: forwards;
     }
     
     @keyframes textShine {
       0%, 100% {
-        color: #6b7280; /* базовый серый */
+        color: #6b7280;
       }
       50% {
-        color: #a3a3a3; /* более яркий серый */
+        color: #a3a3a3;
       }
     }
     
@@ -313,6 +315,17 @@
       grid.style.opacity = '0.4'; // оставляем сетку немного видимой без подсветки
     }, 1000);
   });
+
+  const p = document.querySelector('.shiny-text');
+  const text = p.textContent;
+  p.textContent = ''; // очистить
+  
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = text[i];
+    span.style.animationDelay = `${i * 0.15}s`; // задержка по буквам
+    p.appendChild(span);
+  }
 
   </script>
 </body>
