@@ -10,22 +10,37 @@
     html, body {
       min-height: 100vh;
       background: #151515 !important;
-      padding: 0;
       margin: 0;
+      padding: 0;
       font-family: 'Fira Sans', Arial, sans-serif;
       overflow-x: hidden;
     }
+
     .gridline {
       position: absolute;
-      top: 0; bottom: 0;
+      top: 0;
+      bottom: 0;
       width: 1px;
       background: rgba(255,255,255,0.08);
       z-index: 0;
     }
+
+    /* Классы позиционирования по линиям */
+    .start-line-1 { left: 0%; }
+    .start-line-2 { left: 20%; }
+    .start-line-3 { left: 40%; }
+    .start-line-4 { left: 60%; }
+    .start-line-5 { left: 80%; }
+
+    .from-line-2-to-4 {
+      left: 20%;
+      width: 40%;
+    }
+
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
-<body class="relative min-h-screen w-full overflow-hidden">
+<body class="relative w-full min-h-screen overflow-hidden">
 
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 pointer-events-none z-0">
@@ -37,62 +52,46 @@
     <div class="gridline" style="left: 100%;"></div>
   </div>
 
-  <!-- Шапка -->
-  <header class="relative w-full h-24 flex items-center justify-between px-8 z-30">
-    <!-- Логотип -->
-    <div>
+  <!-- Обёртка с сеткой -->
+  <div class="grid grid-cols-6 w-full min-h-screen relative z-10">
+
+    <!-- Логотип (начинается с 1-й линии) -->
+    <div class="col-start-1 flex items-center px-8">
       <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
     </div>
 
-    <!-- Навигация -->
-    <nav class="flex gap-12 items-center">
-      <a href="#" title="Главная" aria-label="Главная"
-         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
-        Главная
-      </a>
-      <a href="#" title="Проекты" aria-label="Проекты"
-         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
-        Проекты
-      </a>
-      <a href="#" title="Услуги" aria-label="Услуги"
-         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
-        Услуги
-      </a>
-      <a href="#" title="Контакты" aria-label="Контакты"
-         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
-        Контакты
-      </a>
-      <a href="#" title="Об авторе" aria-label="Об авторе"
-         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
-        Об авторе
-      </a>
+    <!-- Навигация (строго по линиям: 2,3,4,5,6) -->
+    <nav class="col-start-2 col-span-5 flex items-center justify-evenly h-24">
+      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Главная</a>
+      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Проекты</a>
+      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Услуги</a>
+      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Контакты</a>
+      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Об авторе</a>
     </nav>
-  </header>
 
-  <!-- Соц. сети слева внизу -->
-  <div class="fixed left-8 bottom-8 z-30 flex flex-col gap-3">
-    <a href="https://t.me/yourtelegram" target="_blank" title="Telegram" aria-label="Telegram">
-      <img src="public/Telegram.png" alt="Telegram" class="w-7 h-7">
-    </a>
-    <a href="https://vk.com/yourvk" target="_blank" title="VK" aria-label="VK">
-      <img src="public/Vk.png" alt="VK" class="w-7 h-7">
-    </a>
-  </div>
+    <!-- Соцсети слева снизу -->
+    <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3">
+      <a href="https://t.me/yourtelegram" target="_blank">
+        <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6">
+      </a>
+      <a href="https://vk.com/yourvk" target="_blank">
+        <img src="public/Vk.png" alt="VK" class="w-6 h-6">
+      </a>
+    </div>
 
-  <!-- Центральный блок -->
-  <main class="w-full flex flex-row">
-    <section class="flex flex-col justify-center items-start" style="margin-left: 20vw; min-height: 70vh;">
+    <!-- Центральный блок (от линии 2 до 4) -->
+    <section class="absolute from-line-2-to-4 flex flex-col justify-center items-start" style="min-height: 70vh;">
       <img src="public/logo.png" alt="" aria-hidden="true" class="w-[260px] xl:w-[320px] h-auto mb-7">
-      <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 text-left"
-          style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; width: 100%;">
+      <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3"
+          style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em;">
         KOROLEV DENIS
       </h1>
-      <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase text-left"
+      <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase"
            style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em;">
         DESIGNER | WEB | PHOTOGRAPHER
       </div>
     </section>
-  </main>
 
+  </div>
 </body>
 </html>
