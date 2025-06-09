@@ -131,11 +131,6 @@
   </style>
 </head>
 <body class="relative w-full h-screen">
-
-  <!-- Сетка (поднимаем в иерархии выше фона) -->
-  <div class="absolute inset-0 z-[1] pointer-events-none">
-    <div id="static-grid"></div>
-  </div>
   
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 z-0">
@@ -154,6 +149,11 @@
     <div class="w-[20%] bg-section" id="block-3"></div>
     <div class="w-[20%] bg-section" id="block-4"></div>
     <div class="w-[20%] bg-section" id="block-5"></div>
+  </div>
+
+  <!-- Сетка (поднимаем в иерархии выше фона) -->
+  <div class="absolute inset-0 z-[1] pointer-events-none">
+    <div id="static-grid"></div>
   </div>
   
   <!-- Верхнее меню -->
