@@ -2,17 +2,15 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>K18 — Korolev Denis</title>
+  <title>Сетка из 6 вертикальных линий</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html, body {
-      min-height: 100vh;
-      background: #151515 !important;
       margin: 0;
       padding: 0;
-      font-family: 'Fira Sans', Arial, sans-serif;
+      min-height: 100vh;
+      background-color: #151515;
       overflow-x: hidden;
     }
 
@@ -21,11 +19,12 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: rgba(255,255,255,0.08);
+      background-color: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
       z-index: 0;
     }
 
-    /* Классы позиционирования по линиям */
+    /* Классы для привязки элементов к линиям */
     .start-line-1 { left: 0%; }
     .start-line-2 { left: 20%; }
     .start-line-3 { left: 40%; }
@@ -40,58 +39,17 @@
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
-<body class="relative w-full min-h-screen overflow-hidden">
+<body class="relative w-full h-screen">
 
   <!-- Вертикальные линии -->
-  <div class="absolute inset-0 pointer-events-none z-0">
-    <div class="gridline" style="left: 0%;"></div>
-    <div class="gridline" style="left: 20%;"></div>
-    <div class="gridline" style="left: 40%;"></div>
-    <div class="gridline" style="left: 60%;"></div>
-    <div class="gridline" style="left: 80%;"></div>
-    <div class="gridline" style="left: 100%;"></div>
+  <div class="absolute inset-0 z-0">
+    <div class="gridline" style="left: 0%;"></div>    <!-- Линия 1 -->
+    <div class="gridline" style="left: 20%;"></div>   <!-- Линия 2 -->
+    <div class="gridline" style="left: 40%;"></div>   <!-- Линия 3 -->
+    <div class="gridline" style="left: 60%;"></div>   <!-- Линия 4 -->
+    <div class="gridline" style="left: 80%;"></div>   <!-- Линия 5 -->
+    <div class="gridline" style="left: 100%;"></div>  <!-- Линия 6 -->
   </div>
 
-  <!-- Обёртка с сеткой -->
-  <div class="grid grid-cols-6 w-full min-h-screen relative z-10">
-
-    <!-- Логотип (начинается с 1-й линии) -->
-    <div class="col-start-1 flex items-center px-8">
-      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
-    </div>
-
-    <!-- Навигация (строго по линиям: 2,3,4,5,6) -->
-    <nav class="col-start-2 col-span-5 flex items-center justify-evenly h-24">
-      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Главная</a>
-      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Проекты</a>
-      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Услуги</a>
-      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Контакты</a>
-      <a href="#" class="text-white text-sm font-bold tracking-wide hover:opacity-100 opacity-90 transition">Об авторе</a>
-    </nav>
-
-    <!-- Соцсети слева снизу -->
-    <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3">
-      <a href="https://t.me/yourtelegram" target="_blank">
-        <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6">
-      </a>
-      <a href="https://vk.com/yourvk" target="_blank">
-        <img src="public/Vk.png" alt="VK" class="w-6 h-6">
-      </a>
-    </div>
-
-    <!-- Центральный блок (от линии 2 до 4) -->
-    <section class="absolute from-line-2-to-4 flex flex-col justify-center items-start" style="min-height: 70vh;">
-      <img src="public/logo.png" alt="" aria-hidden="true" class="w-[260px] xl:w-[320px] h-auto mb-7">
-      <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3"
-          style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em;">
-        KOROLEV DENIS
-      </h1>
-      <div class="text-slate-400 text-base opacity-70 tracking-widest font-light uppercase"
-           style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.18em;">
-        DESIGNER | WEB | PHOTOGRAPHER
-      </div>
-    </section>
-
-  </div>
 </body>
 </html>
