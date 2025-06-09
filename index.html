@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>K18 — Меню с анимацией</title>
+  <title>K18 — Главная</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -54,6 +54,14 @@
       transform: scaleX(1);
     }
 
+    .menu-link.active {
+      opacity: 1;
+    }
+
+    .menu-link.active::after {
+      transform: scaleX(1);
+    }
+
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
@@ -79,23 +87,28 @@
 
     <!-- Меню -->
     <nav class="absolute top-1/2 -translate-y-1/2 w-full z-10">
-
-      <!-- Главная -->
-      <a href="#" class="menu-link" style="left: 20%;">Главная</a>
-
-      <!-- Проекты -->
-      <a href="#" class="menu-link" style="left: 30%;">Проекты</a>
-
-      <!-- Услуги -->
-      <a href="#" class="menu-link" style="left: 40%;">Услуги</a>
-
-      <!-- Контакты -->
-      <a href="#" class="menu-link" style="left: 50%;">Команда</a>
-
-      <!-- Об авторе -->
-      <a href="#" class="menu-link" style="left: 60%;">Об авторе</a>
+      <a href="/" class="menu-link" style="left: 20%;">Главная</a>
+      <a href="/projects" class="menu-link" style="left: 30%;">Проекты</a>
+      <a href="/services" class="menu-link" style="left: 40%;">Услуги</a>
+      <a href="/contacts" class="menu-link" style="left: 50%;">Команда</a>
+      <a href="/about" class="menu-link" style="left: 60%;">Об авторе</a>
     </nav>
+
   </header>
 
+  <!-- JS: авто-активация текущей ссылки -->
+  <script>
+    const currentPath = window.location.pathname;
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (
+        (href === '/' && currentPath === '/') || 
+        (href !== '/' && currentPath.startsWith(href))
+      ) {
+        link.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
