@@ -117,16 +117,14 @@
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 20px 20px;
+      background-size: 20% 20px; /* Ширина блока = 1/6 */
+      background-position: 0 0;
       z-index: 0;
     
-      /* Подсветка вокруг мыши */
       mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.3) 0%, transparent 100%);
       mask-repeat: no-repeat;
-      mask-composite: add;
       -webkit-mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.3) 0%, transparent 100%);
       -webkit-mask-repeat: no-repeat;
-      -webkit-mask-composite: add;
     }
   </style>
 </head>
