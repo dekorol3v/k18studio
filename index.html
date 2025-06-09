@@ -140,22 +140,21 @@
       opacity: 1;
     }
 
+    @keyframes textShine {
+      0%, 16.6%, 100% { color: #6b7280; }
+      8.3% { color: #a3a3a3; }
+    }
+    
     .shiny-text span {
       display: inline-block;
       color: #6b7280;
-      animation: textShine 5s ease-in-out infinite;
-      animation-fill-mode: forwards;
+      animation: textShine 12s linear infinite;
     }
     
-    @keyframes textShine {
-      0%, 100% {
-        color: #6b7280;
-      }
-      50% {
-        color: #a3a3a3;
-      }
+    .shiny-text .invisible {
+      opacity: 0 !important;
+      animation: none !important;
     }
-    
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -318,13 +317,15 @@
 
   // Анимация перелива букв подзаголовка
   const shinyText = document.querySelector('.shiny-text');
-  const shinyTextContent = shinyText.textContent;
-  shinyText.textContent = ''; // очистить
+  const text = shinyText.textContent;
+  shinyText.textContent = '';
   
-  for (let i = 0; i < shinyTextContent.length; i++) {
-    const span = document.createElement('span');
-    span.textContent = shinyTextContent[i];
-    span.style.animationDelay = `${i * 0.15}s`; // задержка по буквам
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    let span = document.createElement('span');
+    span.textContent = char;
+    if (char === ' ') span.className = 'invisible';
+    else span.style.animationDelay = `${i * 0.08}s`;
     shinyText.appendChild(span);
   }
   </script>
