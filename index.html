@@ -141,33 +141,16 @@
     }
 
     .shiny-text {
-      position: relative;
-      color: #9ca3af; /* text-neutral-500 */
-      overflow: hidden;
+      color: #6b7280; /* базовый цвет — text-neutral-500 */
+      animation: textShine 5s ease-in-out infinite;
     }
     
-    .shiny-text::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.6),
-        transparent
-      );
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
-    }
-    
-    @keyframes shine {
-      0% {
-        left: -75%;
+    @keyframes textShine {
+      0%, 100% {
+        color: #6b7280; /* базовый серый */
       }
-      100% {
-        left: 125%;
+      50% {
+        color: #a3a3a3; /* более яркий серый */
       }
     }
     
