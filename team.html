@@ -14,26 +14,100 @@
       overflow-x: hidden;
       font-family: 'Fira Sans', Arial, sans-serif;
     }
-
-    /* Стили для скиллов */
-    .skill {
-      background: #232323;
-      color: #fff;
-      border-radius: 0.5em;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 4px 12px;
-      display: inline-block;
-      margin-bottom: 2px;
+    
+    /* Сетка */
+    .gridline {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: rgba(255,255,255,0.08);
+      pointer-events: none;
+      z-index: 0;
     }
-
-    /* --- Сетка и карточки --- */
+    
+    /* Верхнее меню и активная ссылка */
+    .menu-link {
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+      transition: opacity 0.3s;
+    }
+    .menu-link::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: white;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      margin-top: 4px;
+    }
+    .menu-link:hover,
+    .menu-link.active { opacity: 1; }
+    .menu-link:hover::after,
+    .menu-link.active::after { transform: scaleX(1); }
+    
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+    .animate-blink {
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes pulse-bg {
+      0%, 100% { background-color: #151515; }
+      50%      { background-color: #1e1e1e; }
+    }
+    .bg-section {
+      background-color: #151515;
+      transition: background-color 1s;
+    }
+    .bg-highlight {
+      background-color: #1e1e1e !important;
+    }
+    
+    /* Фоновая сетка */
+    #static-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right,rgba(255,255,255,0.03) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(255,255,255,0.015) 1px,transparent 1px);
+      background-size: 20px 20px;
+      background-position: 0 0;
+      z-index: 1;
+      mask-image:
+        linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),
+        radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
+      -webkit-mask-image:
+        linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),
+        radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      transition: mask-image 0.3s;
+      opacity: 1;
+    }
+    
+    /* --- Блок команды --- */
+    
     .team-title-wrap {
       left: 20%;
       top: 180px;
       width: 40%;
       position: absolute;
       z-index: 10;
+    }
+    .team-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      white-space: nowrap;
     }
     .team-cards {
       position: absolute;
@@ -51,27 +125,34 @@
       box-shadow: 0 6px 32px 0 rgba(0,0,0,0.16);
       padding: 2rem;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       width: 100%;
-      gap: 2rem;
+      gap: 2.3rem;
     }
+    
+    /* Фотография почти на всю высоту карточки */
     .team-card-photo {
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 9rem;
-      height: 9rem;
-      border-radius: 1.1rem;
+      width: 180px;       /* Можно подогнать под свой размер */
+      height: 220px;      /* Почти вся высота карточки */
+      border-radius: 1rem;
       border: 2px solid #444;
       background: #191919;
       overflow: hidden;
+      margin: 0;
+      box-sizing: border-box;
     }
     .team-card-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
+    
+    /* Контент справа */
     .team-card-content {
       flex: 1;
       min-width: 0;
@@ -79,9 +160,91 @@
       flex-direction: column;
       gap: 0.6rem;
     }
-
+    
+    /* Имя и подзаголовок - ближе друг к другу */
+    .team-card-name {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0 0 0.18em 0;
+      letter-spacing: 0.01em;
+    }
+    .team-card-role {
+      color: #bdbdbd;
+      font-size: 1.08rem;
+      margin: 0 0 1em 0;
+    }
+    
+    /* Блок скиллов */
+    .team-card-skills {
+      margin: 0 0 0.7em 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .skills-title {
+      font-weight: 600;
+      color: #fff;
+      font-size: 1rem;
+      margin-top: 3px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    
+    .skill {
+      background: #232323;
+      color: #fff;
+      border-radius: 0.5em;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 4px 13px;
+      display: inline-block;
+    }
+    
+    /* Описание */
+    .team-card-desc {
+      color: #888;
+      font-size: 1.01rem;
+      margin: 1em 0 0 0;
+    }
+    
     /* --- Адаптив --- */
     @media (max-width: 900px) {
+      .gridline,
+      #static-grid {
+        display: none !important;
+      }
+      #block-1, #block-2, #block-3, #block-4, #block-5 {
+        display: none !important;
+      }
+      header {
+        height: 60px !important;
+        min-height: 60px !important;
+      }
+      .absolute.top-8.left-8 {
+        position: static !important;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding-top: 12px;
+      }
+      nav {
+        position: static !important;
+        width: 100% !important;
+        transform: none !important;
+        margin-top: 6px;
+        text-align: center;
+      }
+      .menu-link {
+        position: static !important;
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 1rem !important;
+      }
       .team-title-wrap,
       .team-cards {
         left: 0 !important;
@@ -91,6 +254,10 @@
         top: 80px !important;
         text-align: center !important;
       }
+      .team-title {
+        font-size: 2rem !important;
+        margin-bottom: 32px !important;
+      }
       .team-cards {
         top: 170px !important;
         gap: 20px !important;
@@ -99,25 +266,35 @@
       .team-card {
         flex-direction: column;
         align-items: center;
-        padding: 1.2rem 0.7rem;
-        gap: 1.1rem;
+        padding: 1.3rem 0.8rem;
+        gap: 1.5rem;
       }
       .team-card-photo {
-        width: 6.5rem;
-        height: 6.5rem;
-        border-radius: 1rem;
+        width: 150px;
+        height: 180px;
       }
       .team-card-content {
         align-items: center;
         text-align: center;
       }
+      .team-card-name { font-size: 1.45rem; }
+      .skills-title { font-size: 0.98rem; }
+      .skills-list { gap: 5px; }
+      .skill { font-size: 0.8rem; padding: 4px 10px; }
     }
     @media (max-width: 500px) {
       .team-title-wrap { top: 46px !important; }
+      .team-title { font-size: 1.15rem !important; margin-bottom: 22px !important; }
       .team-cards { top: 120px !important; gap: 14px !important; }
-      .team-card { padding: 0.7rem 0.2rem; }
+      .team-card-photo {
+        width: 110px;
+        height: 125px;
+      }
+      .team-card-name { font-size: 1.15rem; }
+      }
       .team-card-photo { width: 4.7rem; height: 4.7rem; }
-    }
+    }  
+
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -176,11 +353,11 @@
         <img src="public/user1.png" alt="Денис Королев" />
       </div>
       <div class="team-card-content">
-        <h3 class="text-white text-2xl font-bold mb-0.5">Денис Королев</h3>
-        <p class="text-neutral-400 text-base">Основатель проекта | Разработчик</p>
-        <div class="flex items-start gap-3 flex-wrap mt-1">
-          <span class="text-neutral-300 text-base font-semibold min-w-fit mt-1">Скилы:</span>
-          <div class="flex flex-wrap gap-2">
+        <h3 class="team-card-name">Денис Королев</h3>
+        <p class="team-card-role">Основатель проекта | Разработчик</p>
+        <div class="team-card-skills">
+          <span class="skills-title">Скилы:</span>
+          <div class="skills-list">
             <span class="skill">HTML</span>
             <span class="skill">CSS</span>
             <span class="skill">JS</span>
@@ -197,7 +374,7 @@
             <span class="skill">Typography</span>
           </div>
         </div>
-        <p class="text-neutral-500 text-sm mt-3">Создаю современный дизайн, работаю с фото\видео\музыкой</p>
+        <p class="team-card-desc">Создаю современный дизайн, работаю с фото\видео\музыкой</p>
       </div>
     </div>
     <!-- Ещё карточка -->
