@@ -38,46 +38,51 @@
   </div>
 
   <!-- Шапка -->
-  <header class="relative w-full h-24 flex items-center z-20" style="background: transparent;">
-  <!-- Логотип с одинаковым отступом слева и сверху -->
-  <div class="absolute top-8 left-8 z-20">
-    <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
-  </div>
+  <header class="relative w-full h-24 flex items-center justify-between px-8 z-30">
+    <!-- Логотип -->
+    <div>
+      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
+    </div>
 
-  <!-- Меню (кнопки строго по линиям и по центру логотипа) -->
-  <nav class="absolute top-0 left-0 w-full h-full z-10">
-    <a href="#" 
-      class="absolute left-[20vw] top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
-    >Главная</a>
-    <a href="#"
-      class="absolute left-[30vw] top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
-    >Проекты</a>
-    <a href="#"
-      class="absolute left-[40vw] top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
-    >Услуги</a>
-    <a href="#"
-      class="absolute left-[50vw] top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
-    >Контакты</a>
-    <a href="#"
-      class="absolute left-[60vw] top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
-    >Об авторе</a>
-  </nav>
+    <!-- Навигация -->
+    <nav class="flex gap-12 items-center">
+      <a href="#" title="Главная" aria-label="Главная"
+         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
+        Главная
+      </a>
+      <a href="#" title="Проекты" aria-label="Проекты"
+         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
+        Проекты
+      </a>
+      <a href="#" title="Услуги" aria-label="Услуги"
+         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
+        Услуги
+      </a>
+      <a href="#" title="Контакты" aria-label="Контакты"
+         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
+        Контакты
+      </a>
+      <a href="#" title="Об авторе" aria-label="Об авторе"
+         class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">
+        Об авторе
+      </a>
+    </nav>
+  </header>
 
   <!-- Соц. сети слева внизу -->
   <div class="fixed left-8 bottom-8 z-30 flex flex-col gap-3">
-    <a href="https://t.me/yourtelegram" target="_blank">
+    <a href="https://t.me/yourtelegram" target="_blank" title="Telegram" aria-label="Telegram">
       <img src="public/Telegram.png" alt="Telegram" class="w-7 h-7">
     </a>
-    <a href="https://vk.com/yourvk" target="_blank">
+    <a href="https://vk.com/yourvk" target="_blank" title="VK" aria-label="VK">
       <img src="public/Vk.png" alt="VK" class="w-7 h-7">
     </a>
   </div>
-</header>
 
-  <!-- Пример центрального блока -->
+  <!-- Центральный блок -->
   <main class="w-full flex flex-row">
     <section class="flex flex-col justify-center items-start" style="margin-left: 20vw; min-height: 70vh;">
-      <img src="public/logo.png" alt="K18 Logo" class="w-[260px] xl:w-[320px] h-auto mb-7">
+      <img src="public/logo.png" alt="" aria-hidden="true" class="w-[260px] xl:w-[320px] h-auto mb-7">
       <h1 class="text-white text-5xl xl:text-6xl font-bold tracking-wider mb-3 text-left"
           style="font-family: 'Fira Sans', Arial, sans-serif; letter-spacing:0.07em; width: 100%;">
         KOROLEV DENIS
@@ -89,6 +94,5 @@
     </section>
   </main>
 
-  
 </body>
 </html>
