@@ -249,17 +249,17 @@
   });
 
   // Анимация печати/стирания текста
-  const text = "KOROLEV DENIS";
   const typedText = document.getElementById("typed-text");
   const cursor = document.getElementById("cursor");
+  const typingText = "KOROLEV DENIS";
 
   let index = 0;
   let typing = true;
 
   function loopAnimation() {
     if (typing) {
-      if (index < text.length) {
-        typedText.textContent += text.charAt(index);
+      if (index < typingText.length) {
+        typedText.textContent += typingText.charAt(index);
         index++;
         setTimeout(loopAnimation, 120);
       } else {
@@ -270,7 +270,7 @@
       }
     } else {
       if (index > 0) {
-        typedText.textContent = text.substring(0, index - 1);
+        typedText.textContent = typingText.substring(0, index - 1);
         index--;
         setTimeout(loopAnimation, 80);
       } else {
@@ -316,17 +316,17 @@
     }, 1000);
   });
 
-  const p = document.querySelector('.shiny-text');
-  const text = p.textContent;
-  p.textContent = ''; // очистить
+  // Анимация перелива букв подзаголовка
+  const shinyText = document.querySelector('.shiny-text');
+  const shinyTextContent = shinyText.textContent;
+  shinyText.textContent = ''; // очистить
   
-  for (let i = 0; i < text.length; i++) {
+  for (let i = 0; i < shinyTextContent.length; i++) {
     const span = document.createElement('span');
-    span.textContent = text[i];
+    span.textContent = shinyTextContent[i];
     span.style.animationDelay = `${i * 0.15}s`; // задержка по буквам
-    p.appendChild(span);
+    shinyText.appendChild(span);
   }
-
   </script>
 </body>
 </html>
