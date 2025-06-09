@@ -62,6 +62,15 @@
       transform: scaleX(1);
     }
 
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .animate-blink {
+      animation: blink 1s step-start infinite;
+    }
+
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
@@ -96,6 +105,22 @@
 
   </header>
 
+  <!-- Центральный блок: логотип и текст -->
+  <section class="absolute" style="left: 20%; top: 35%; width: 60%;">
+    <!-- Логотип -->
+    <img src="public/logo.png" alt="" class="w-[240px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
+
+    <!-- Текст с эффектом печати -->
+    <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap">
+      <span id="typed-text"></span><span id="cursor" class="text-white animate-blink">|</span>
+    </h1>
+
+    <!-- Подзаголовок -->
+    <p class="text-slate-400 text-base tracking-widest font-light uppercase">
+      DESIGNER | WEB | PHOTOGRAPHER
+    </p>
+  </section>
+
   <!-- JS: авто-активация текущей ссылки -->
   <script>
     const currentPath = window.location.pathname;
@@ -109,6 +134,25 @@
         link.classList.add('active');
       }
     });
+
+    // Печатающий эффект
+    const text = "KOROLEV DENIS";
+    const typedText = document.getElementById("typed-text");
+    const cursor = document.getElementById("cursor");
+
+    let index = 0;
+
+    function typeNextChar() {
+      if (index < text.length) {
+        typedText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeNextChar, 120);
+      } else {
+        cursor.classList.add("animate-blink"); // курсор продолжает мигать
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', typeNextChar);
   </script>
 </body>
 </html>
