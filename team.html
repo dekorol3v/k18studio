@@ -14,47 +14,163 @@
       overflow-x: hidden;
       font-family: 'Fira Sans', Arial, sans-serif;
     }
+
     .gridline {
-      position: absolute; top: 0; bottom: 0; width: 1px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
       background-color: rgba(255,255,255,0.08);
-      pointer-events: none; z-index: 0;
+      pointer-events: none;
+      z-index: 0;
     }
+
     .menu-link {
-      position: absolute; color: white; font-weight: bold; font-size: 0.875rem;
-      letter-spacing: 0.05em; opacity: 0.85; transition: opacity 0.3s;
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+      transition: opacity 0.3s;
     }
-    .menu-link::after { content: ''; display: block; height: 2px; background: white; transform: scaleX(0); transition: transform 0.3s; margin-top: 4px; }
-    .menu-link:hover, .menu-link.active { opacity: 1; }
-    .menu-link:hover::after, .menu-link.active::after { transform: scaleX(1);}
-    @keyframes blink { 0%, 50%, 100% { opacity: 1;} 25%, 75% { opacity: 0; } }
-    .animate-blink { animation: blink 1s step-start infinite; }
-    @keyframes pulse-bg { 0%, 100% { background-color: #151515;} 50% { background-color: #1e1e1e;} }
-    .bg-section { background-color: #151515; transition: background-color 1s;}
-    .bg-highlight { background-color: #1e1e1e !important; }
+
+    .menu-link::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: white;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      margin-top: 4px;
+    }
+
+    .menu-link:hover,
+    .menu-link.active {
+      opacity: 1;
+    }
+
+    .menu-link:hover::after,
+    .menu-link.active::after {
+      transform: scaleX(1);
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .animate-blink {
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes pulse-bg {
+      0%, 100% { background-color: #151515; }
+      50%      { background-color: #1e1e1e; }
+    }
+
+    .bg-section {
+      background-color: #151515;
+      transition: background-color 1s;
+    }
+
+    .bg-highlight {
+      background-color: #1e1e1e !important;
+    }
+
     #static-grid {
-      position: fixed; inset: 0; pointer-events: none;
-      background-image: linear-gradient(to right,rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.015) 1px,transparent 1px);
-      background-size: 20px 20px; background-position: 0 0; z-index: 1;
-      mask-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
-      -webkit-mask-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
-      mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; transition: mask-image 0.3s; opacity: 1;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right,rgba(255,255,255,0.03) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(255,255,255,0.015) 1px,transparent 1px);
+      background-size: 20px 20px;
+      background-position: 0 0;
+      z-index: 1;
+      mask-image:
+        linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),
+        radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
+      -webkit-mask-image:
+        linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),
+        radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,255,255,1) 0%,transparent 80%);
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      transition: mask-image 0.3s;
+      opacity: 1;
     }
-    /* Адаптив */
+
+    /* --- Адаптив --- */
     @media (max-width: 900px) {
-      .gridline, #static-grid { display: none !important; }
-      #block-1, #block-2, #block-3, #block-4, #block-5 { display: none !important; }
-      header { height: 60px !important; min-height: 60px !important;}
-      .absolute.top-8.left-8 {position: static !important; justify-content:center; align-items:center; margin: 0 auto; padding-top: 12px;}
-      nav { position: static !important; width: 100% !important; transform: none !important; margin-top: 6px; text-align: center;}
-      .menu-link { position: static !important; display: inline-block; margin: 0 10px; font-size: 1rem !important;}
-      .team-title-wrap {left: 0 !important; width: 100% !important; text-align:center !important;}
-      .team-title {font-size: 2rem !important;}
-      .team-cards {width: 100% !important; left: 0 !important; gap: 18px !important;}
-      .team-card {width: 98vw !important; max-width: 370px !important;}
+      .gridline,
+      #static-grid {
+        display: none !important;
+      }
+      #block-1, #block-2, #block-3, #block-4, #block-5 {
+        display: none !important;
+      }
+      header {
+        height: 60px !important;
+        min-height: 60px !important;
+      }
+      .absolute.top-8.left-8 {
+        position: static !important;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding-top: 12px;
+      }
+      nav {
+        position: static !important;
+        width: 100% !important;
+        transform: none !important;
+        margin-top: 6px;
+        text-align: center;
+      }
+      .menu-link {
+        position: static !important;
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 1rem !important;
+      }
+      .team-title-wrap {
+        left: 0 !important;
+        width: 100% !important;
+        text-align: center !important;
+      }
+      .team-title {
+        font-size: 2rem !important;
+        margin-bottom: 32px !important;
+      }
+      .team-cards {
+        width: 100% !important;
+        left: 0 !important;
+        gap: 18px !important;
+        top: 340px !important;
+      }
+      .team-card {
+        width: 95vw !important;
+        max-width: 360px !important;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 8px !important;
+      }
     }
+
     @media (max-width: 500px) {
-      .team-title {font-size: 1.2rem !important;}
-      .team-card {max-width: 98vw !important; padding: 14px 4px !important;}
+      .team-title {
+        font-size: 1.2rem !important;
+      }
+      .team-card {
+        max-width: 98vw !important;
+        padding: 14px 4px !important;
+      }
+      .team-title-wrap {
+        top: 120px !important;
+      }
+      .team-cards {
+        top: 200px !important;
+      }
     }
   </style>
 </head>
@@ -68,6 +184,7 @@
     <div class="gridline" style="left: 80%;"></div>
     <div class="gridline" style="left: 100%;"></div>
   </div>
+
   <!-- Анимированные фоны -->
   <div class="absolute inset-0 z-[-1] flex w-full h-full">
     <div class="w-[20%] bg-section" id="block-1"></div>
@@ -76,8 +193,12 @@
     <div class="w-[20%] bg-section" id="block-4"></div>
     <div class="w-[20%] bg-section" id="block-5"></div>
   </div>
+
   <!-- Сетка -->
-  <div class="absolute inset-0 z-[1] pointer-events-none"><div id="static-grid"></div></div>
+  <div class="absolute inset-0 z-[1] pointer-events-none">
+    <div id="static-grid"></div>
+  </div>
+
   <!-- Верхнее меню -->
   <header class="relative w-full h-24 z-10">
     <div class="absolute top-8 left-8">
@@ -95,10 +216,11 @@
   <!-- Заголовок (анимированный), строго по второй линии -->
   <div class="team-title-wrap absolute z-10" style="left: 20%; top: 250px; width: 40%;">
     <h1 class="team-title text-white text-4xl xl:text-5xl font-bold tracking-wider mb-8 whitespace-nowrap">
-      <span id="typed-team"></span><span id="cursor-team" class="text-white animate-blink">|</span>
+      <span id="typed-team"></span>
+      <span id="cursor-team" class="text-white animate-blink">|</span>
     </h1>
   </div>
-  
+
   <!-- Блок с карточками (от 2 до 4 линии, ОДНА КАРТОЧКА = ОДНА СТРОКА) -->
   <div class="team-cards absolute flex flex-col gap-8 z-10" style="left: 20%; top: 400px; width: 40%;">
     <div class="team-card bg-[#202020] rounded-2xl shadow-xl p-8 flex flex-col items-center w-full">
@@ -152,7 +274,7 @@
           indexTeam++;
           setTimeout(loopTeamAnimation, 120);
         } else {
-          setTimeout(() => { typingTeam = false; loopTeamAnimation(); }, 15000);
+          setTimeout(() => { typingTeam = false; loopTeamAnimation(); }, 10000);
         }
       } else {
         if (indexTeam > 0) {
