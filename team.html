@@ -133,8 +133,9 @@
     
     .team-card-photo {
       flex-shrink: 0;
-      width: 260px;            /* Размер квадрата фото */
-      aspect-ratio: 1 / 1;
+      width: 256px;
+      height: 256px;           /* Фиксированная высота и ширина */
+      aspect-ratio: 1 / 1;     /* Для современности */
       border-radius: 1.1rem;
       border: 2px solid #888;
       background: #191919;
@@ -265,9 +266,12 @@
         gap: 1.5rem;
       }
       .team-card-photo {
-        width: 90vw;
-        max-width: 340px;
-        aspect-ratio: 1/1;
+        width: 92vw;
+        height: 92vw;
+        min-width: 120px;
+        min-height: 120px;
+        max-width: 99vw;
+        max-height: 99vw;
       }
       .team-card-content {
         align-items: center;
