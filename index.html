@@ -326,9 +326,10 @@
   const text = shinyText.textContent;
   shinyText.textContent = '';
   
-  for (let i = 0; i < text.length; i++) {
-  const char = text[i];
-    if (i === 0 && char === ' ') continue; // пропускаем первый пробел (и любые ведущие)
+  const trimmedText = text.replace(/^\s+/, ''); // убираем ведущие пробелы
+  
+  for (let i = 0; i < trimmedText.length; i++) {
+    const char = trimmedText[i];
     const span = document.createElement('span');
     if (char === ' ') {
       span.className = 'invisible';
