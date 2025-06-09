@@ -123,36 +123,54 @@
 
   <!-- JS: авто-активация текущей ссылки -->
   <script>
-    const currentPath = window.location.pathname;
+  const currentPath = window.location.pathname;
 
-    document.querySelectorAll('.menu-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (
-        (href === '/' && currentPath === '/') || 
-        (href !== '/' && currentPath.startsWith(href))
-      ) {
-        link.classList.add('active');
-      }
-    });
+  document.querySelectorAll('.menu-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (
+      (href === '/' && currentPath === '/') || 
+      (href !== '/' && currentPath.startsWith(href))
+    ) {
+      link.classList.add('active');
+    }
+  });
 
-    // Печатающий эффект
-    const text = "KOROLEV DENIS";
-    const typedText = document.getElementById("typed-text");
-    const cursor = document.getElementById("cursor");
+  // Анимация печати/стирания текста
+  const text = "KOROLEV DENIS";
+  const typedText = document.getElementById("typed-text");
+  const cursor = document.getElementById("cursor");
 
-    let index = 0;
+  let index = 0;
+  let typing = true;
 
-    function typeNextChar() {
+  function loopAnimation() {
+    if (typing) {
       if (index < text.length) {
         typedText.textContent += text.charAt(index);
         index++;
-        setTimeout(typeNextChar, 120);
+        setTimeout(loopAnimation, 120);
       } else {
-        cursor.classList.add("animate-blink"); // курсор продолжает мигать
+        setTimeout(() => {
+          typing = false;
+          loopAnimation();
+        }, 7000); // пауза 7 сек после полной строки
+      }
+    } else {
+      if (index > 0) {
+        typedText.textContent = text.substring(0, index - 1);
+        index--;
+        setTimeout(loopAnimation, 80);
+      } else {
+        typing = true;
+        loopAnimation();
       }
     }
+  }
 
-    window.addEventListener('DOMContentLoaded', typeNextChar);
-  </script>
+  window.addEventListener('DOMContentLoaded', () => {
+    cursor.classList.add("animate-blink");
+    loopAnimation();
+  });
+</script>
 </body>
 </html>
