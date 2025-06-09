@@ -113,9 +113,8 @@
 
     /* Общая сетка на фоне */
     #static-grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      width: 100%;
+      height: 100%;
     
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -123,18 +122,20 @@
     
       background-size: calc(100% / 5) 20px;
       background-position: 0 0;
-      z-index: 1;
     
       mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.4) 0%, transparent 100%);
-      mask-repeat: no-repeat;
       -webkit-mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.4) 0%, transparent 100%);
+      mask-repeat: no-repeat;
       -webkit-mask-repeat: no-repeat;
     }
   </style>
 </head>
 <body class="relative w-full h-screen">
 
-  <div id="static-grid"></div>
+  <!-- Сетка (поднимаем в иерархии выше фона) -->
+  <div class="absolute inset-0 z-[1] pointer-events-none">
+    <div id="static-grid"></div>
+  </div>
   
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 z-0">
