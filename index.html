@@ -139,6 +139,38 @@
       transition: mask-image 0.3s ease;
       opacity: 1;
     }
+
+    .shiny-text {
+      position: relative;
+      color: #9ca3af; /* text-neutral-500 */
+      overflow: hidden;
+    }
+    
+    .shiny-text::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.6),
+        transparent
+      );
+      transform: skewX(-20deg);
+      animation: shine 2.5s infinite;
+    }
+    
+    @keyframes shine {
+      0% {
+        left: -75%;
+      }
+      100% {
+        left: 125%;
+      }
+    }
+    
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -197,7 +229,7 @@
     </h1>
 
     <!-- Подзаголовок -->
-    <p class="text-neutral-500 text-sm tracking-widest font-light uppercase">
+    <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text">
       Уникальность — не тренд, а стандарт.
     </p>
   </section>
