@@ -121,7 +121,8 @@
       z-index: 0;
       mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), white 1%, transparent 100%);
       mask-repeat: no-repeat;
-      transition: mask-image 0.2s ease;
+      transition: mask-image 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
     }
   </style>
 </head>
@@ -267,9 +268,17 @@
 
   const grid = document.getElementById('static-grid');
 
+  let hideTimeout;
+  
   document.addEventListener('mousemove', e => {
     grid.style.setProperty('--x', `${e.clientX}px`);
     grid.style.setProperty('--y', `${e.clientY}px`);
+    grid.style.opacity = '1';
+  
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      grid.style.opacity = '0';
+    }, 300);
   });
   </script>
 </body>
