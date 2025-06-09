@@ -80,6 +80,8 @@
     
     .bg-animate {
       animation: pulse-bg 6s ease-in-out infinite;
+      z-index: 0;
+      position: relative; /* нужно, чтобы z-index работал */
     }
     .bg-delay-1 { animation-delay: 0s; }
     .bg-delay-2 { animation-delay: 1s; }
