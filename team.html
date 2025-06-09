@@ -119,14 +119,14 @@
       gap: 32px;
       z-index: 10;
     }
-
+    
     .team-card {
       background: #202020;
       border-radius: 1rem;
       box-shadow: 0 6px 32px 0 rgba(0,0,0,0.16);
       padding: 2rem;
       display: flex;
-      align-items: stretch;   /* <--- растягиваем дочерние блоки по высоте */
+      align-items: stretch;
       width: 100%;
       gap: 2.3rem;
     }
@@ -136,8 +136,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 180px;           /* Фиксированная ширина */
-      height: 100%;           /* <--- высота = всей карточке! */
+      width: 180px;
+      height: 100%;
       border-radius: 1rem;
       border: 2px solid #444;
       background: #191919;
@@ -145,15 +145,13 @@
       margin: 0;
       box-sizing: border-box;
     }
-    
     .team-card-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-        
-    /* Контент справа */
+    
     .team-card-content {
       flex: 1;
       min-width: 0;
@@ -204,6 +202,8 @@
       font-weight: 500;
       padding: 4px 13px;
       display: inline-block;
+      margin-bottom: 2px;
+      white-space: nowrap;
     }
     
     /* Описание */
@@ -213,7 +213,59 @@
       margin: 1em 0 0 0;
     }
     
-    /* --- Адаптив --- */
+    /* --- Вертикальная карточка сотрудника --- */
+    .team-card-vertical {
+      flex-direction: column;
+      align-items: center;
+      padding: 2.2rem 1.4rem 2rem 1.4rem;
+      gap: 1.5rem;
+    }
+    
+    .team-card-photo-vertical {
+      width: 340px;
+      max-width: 94vw;
+      aspect-ratio: 1/1;
+      border-radius: 1rem;
+      border: 2px solid #444;
+      background: #191919;
+      overflow: hidden;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .team-card-photo-vertical img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* Контент блока */
+    .team-card-content-vertical {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .team-card-vertical .team-card-name {
+      font-size: 2rem;
+    }
+    .team-card-vertical .team-card-role {
+      color: #bdbdbd;
+      font-size: 1.08rem;
+      margin: 0 0 1em 0.02em;
+    }
+    
+    /* Скилы — много переносов */
+    .team-card-vertical .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      max-width: 520px;
+    }
+    
     @media (max-width: 900px) {
       .gridline,
       #static-grid {
@@ -282,6 +334,24 @@
       .skills-title { font-size: 0.98rem; }
       .skills-list { gap: 5px; }
       .skill { font-size: 0.8rem; padding: 4px 10px; }
+    
+      /* Вертикальная карточка сотрудника — моб. вид */
+      .team-card-photo-vertical {
+        width: 92vw;
+        max-width: 370px;
+        aspect-ratio: 1/1;
+      }
+      .team-card-vertical .skills-list {
+        max-width: 99vw;
+        gap: 7px 10px;
+      }
+      .team-card-vertical .team-card-name {
+        font-size: 1.22rem;
+      }
+      .team-card-content-vertical {
+        align-items: center;
+        text-align: center;
+      }
     }
     @media (max-width: 500px) {
       .team-title-wrap { top: 46px !important; }
@@ -292,9 +362,13 @@
         height: 125px;
       }
       .team-card-name { font-size: 1.15rem; }
+    
+      /* Вертикальная карточка сотрудника — моб. вид */
+      .team-card-photo-vertical {
+        width: 96vw;
+        max-width: 99vw;
       }
-      .team-card-photo { width: 4.7rem; height: 4.7rem; }
-    }  
+    }
 
   </style>
 </head>
@@ -349,11 +423,11 @@
   <!-- Карточки -->
   <div class="team-cards">
     <!-- Карточка сотрудника -->
-    <div class="team-card">
-      <div class="team-card-photo">
+    <div class="team-card team-card-vertical">
+      <div class="team-card-photo-vertical">
         <img src="public/user1.png" alt="Денис Королев" />
       </div>
-      <div class="team-card-content">
+      <div class="team-card-content-vertical">
         <h3 class="team-card-name">Денис Королев</h3>
         <p class="team-card-role">Основатель проекта | Разработчик</p>
         <div class="team-card-skills">
