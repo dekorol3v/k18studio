@@ -39,21 +39,23 @@
 
   <!-- Шапка -->
   <header class="relative w-full h-24 flex items-center z-20" style="background: transparent;">
-  <div class="absolute top-0 left-0 z-20 p-8">
+  <!-- Логотип в левом верхнем углу с равным отступом -->
+  <div class="absolute top-0 left-0 z-20 p-8 flex items-center">
     <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto">
   </div>
-  <!-- Контейнер с position: relative для навигации -->
-  <div class="absolute top-0 left-0 w-full h-full" style="z-index:10;">
-    <!-- Главное меню -->
-    <nav class="relative w-full h-full">
-      <!-- Каждая кнопка строго по линии -->
-      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:20vw;">Главная</a>
-      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:30vw;">Проекты</a>
-      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:40vw;">Услуги</a>
-      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:50vw;">Контакты</a>
-      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:60vw;">Об авторе</a>
-    </nav>
-  </div>
+  <!-- Меню (кнопки строго по линиям) -->
+  <nav class="absolute top-0 left-0 w-full h-full z-10">
+    <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
+       style="left:20vw;">Главная</a>
+    <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
+       style="left:30vw;">Проекты</a>
+    <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
+       style="left:40vw;">Услуги</a>
+    <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
+       style="left:50vw;">Контакты</a>
+    <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition"
+       style="left:60vw;">Об авторе</a>
+  </nav>
   </header>
 
   <!-- Пример центрального блока -->
