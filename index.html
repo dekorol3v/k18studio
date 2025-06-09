@@ -39,18 +39,21 @@
 
   <!-- Шапка -->
   <header class="relative w-full h-24 flex items-center z-20" style="background: transparent;">
-    <!-- Логотип строго с одинаковым отступом -->
-    <div class="p-10 flex-shrink-0">
-      <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
-    </div>
-    <!-- Меню: абсолютное позиционирование от второй линии -->
-    <nav class="absolute left-[20vw] top-0 h-full flex items-center gap-[7vw]">
-      <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Главная</a>
-      <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Проекты</a>
-      <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Услуги</a>
-      <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Контакты</a>
-      <a href="#" class="text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition">Об авторе</a>
+  <div class="p-10 flex-shrink-0">
+    <img src="public/logo.png" alt="K18 Logo" class="h-14 w-auto">
+  </div>
+  <!-- Контейнер с position: relative для навигации -->
+  <div class="absolute top-0 left-0 w-full h-full" style="z-index:10;">
+    <!-- Главное меню -->
+    <nav class="relative w-full h-full">
+      <!-- Каждая кнопка строго по линии -->
+      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:20vw;">Главная</a>
+      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:30vw;">Проекты</a>
+      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:40vw;">Услуги</a>
+      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:60vw;">Контакты</a>
+      <a href="#" class="absolute top-1/2 -translate-y-1/2 text-white text-lg font-bold tracking-wide opacity-90 hover:opacity-100 transition" style="left:80vw;">Об авторе</a>
     </nav>
+  </div>
   </header>
 
   <!-- Пример центрального блока -->
