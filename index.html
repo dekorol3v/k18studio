@@ -158,6 +158,127 @@
       display: inline-block;
     }
 
+    @media (max-width: 800px) {
+    /* Скрыть сетку на фоне, чтобы не мешала */
+    .gridline, #static-grid {
+      display: none !important;
+    }
+  
+    /* Перестроить фоновые блоки (однотонный фон) */
+    #block-1, #block-2, #block-3, #block-4, #block-5 {
+      width: 100% !important;
+      min-width: 0 !important;
+      position: static !important;
+      display: none;
+    }
+    body {
+      background: #151515;
+    }
+  
+    /* Логотип и меню — компактно, сверху */
+    header {
+      height: 60px !important;
+      min-height: 60px !important;
+    }
+    .absolute.top-8.left-8 {
+      position: static !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      padding-top: 12px;
+      left: 0 !important;
+      top: 0 !important;
+    }
+    .absolute.top-8.left-8 img {
+      height: 40px !important;
+      margin: 0 auto;
+    }
+  
+    nav {
+      position: static !important;
+      width: 100% !important;
+      transform: none !important;
+      margin-top: 6px;
+      text-align: center;
+    }
+    .menu-link {
+      position: static !important;
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 1rem !important;
+      padding: 0.2em 0.5em;
+      left: auto !important;
+      top: auto !important;
+    }
+  
+    /* Центральный блок (логотип + текст) — в колонку */
+    section[style*="left: 20%"] {
+      left: 0 !important;
+      top: 80px !important;
+      width: 100% !important;
+      text-align: center;
+      position: static !important;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+    section[style*="left: 20%"] img {
+      width: 120px !important;
+      margin: 0 auto 16px auto !important;
+    }
+    h1 {
+      font-size: 1.4rem !important;
+      margin-bottom: 8px !important;
+      white-space: normal !important;
+    }
+    .shiny-text {
+      position: static !important;
+      font-size: 0.9rem !important;
+      left: 0 !important;
+      top: 0 !important;
+      margin-top: 6px;
+      display: block !important;
+      text-align: center !important;
+    }
+  
+    /* Фото — скрыть/уменьшить */
+    .absolute.left-\[40%\] {
+      position: static !important;
+      width: 100% !important;
+      justify-content: center !important;
+      align-items: center !important;
+      top: auto !important;
+      bottom: auto !important;
+      margin: 16px 0 0 0 !important;
+    }
+    .absolute.left-\[40%\] img {
+      width: 70vw !important;
+      max-width: 200px !important;
+      margin: 0 auto;
+      display: block;
+    }
+  
+    /* Соцсети — внизу по центру */
+    .fixed.bottom-8.left-8 {
+      position: static !important;
+      display: flex;
+      flex-direction: row !important;
+      justify-content: center !important;
+      gap: 18px !important;
+      margin: 18px auto 0 auto !important;
+    }
+    .fixed.bottom-8.left-8 a {
+      display: inline-flex !important;
+    }
+  }
+  
+  /* Для совсем маленьких экранов */
+  @media (max-width: 420px) {
+    h1 { font-size: 1rem !important; }
+    section[style*="left: 20%"] img { width: 80px !important; }
+    .absolute.left-\[40%\] img { max-width: 120px !important; }
+  }
+
   </style>
 </head>
 <body class="relative w-full h-screen">
