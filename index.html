@@ -87,6 +87,15 @@
     .bg-delay-4 { animation-delay: 3s; }
     .bg-delay-5 { animation-delay: 4s; }
 
+    .bg-section {
+      background-color: #151515;
+      transition: background-color 1s ease;
+    }
+
+    .bg-highlight {
+      background-color: #1e1e1e !important;
+    }
+    
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -103,11 +112,11 @@
 
   <!-- Анимированные фоны между линиями -->
   <div class="absolute inset-0 z-[-1] flex w-full h-full">
-    <div class="w-[20%] bg-animate bg-delay-1" style="background-color: #151515;"></div>
-    <div class="w-[20%] bg-animate bg-delay-2"></div>
-    <div class="w-[20%] bg-animate bg-delay-3"></div>
-    <div class="w-[20%] bg-animate bg-delay-4"></div>
-    <div class="w-[20%] bg-animate bg-delay-5"></div>
+    <div class="w-[20%] bg-section" id="block-1"></div>
+    <div class="w-[20%] bg-section" id="block-2"></div>
+    <div class="w-[20%] bg-section" id="block-3"></div>
+    <div class="w-[20%] bg-section" id="block-4"></div>
+    <div class="w-[20%] bg-section" id="block-5"></div>
   </div>
   
   <!-- Верхнее меню -->
@@ -201,10 +210,27 @@
     }
   }
 
+  // Случайное "вспыхивание" одного фонового блока
+  function randomFlashLoop() {
+    const total = 5;
+    const randomIndex = Math.floor(Math.random() * total) + 1;
+    const el = document.getElementById(`block-${randomIndex}`);
+
+    el.classList.add('bg-highlight');
+
+    setTimeout(() => {
+      el.classList.remove('bg-highlight');
+    }, 1000); // длительность подсветки
+
+    setTimeout(randomFlashLoop, 1000); // через секунду другой блок
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     cursor.classList.add("animate-blink");
     loopAnimation();
+    randomFlashLoop(); // запускаем эффект фона
   });
-</script>
+  </script>
+
 </body>
 </html>
