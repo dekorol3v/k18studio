@@ -171,6 +171,9 @@
       text-align: left !important;
       margin: 0 !important;
       padding: 0 4vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
     /* Заголовок и подзаголовок компактнее */
     h1 {
@@ -184,23 +187,20 @@
       left: 0 !important;
       top: 0 !important;
     }
-  
-    /* Соцсети тоже по второй линии */
-    .fixed.bottom-8.left-8 {
-      left: 20% !important;
-      bottom: 18px !important;
-      flex-direction: row !important;
-      gap: 18px !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      justify-content: flex-start !important;
-      width: auto !important;
-      position: fixed !important;
+
+    /* Соцсети мобильные — вертикально и по центру под лого */
+    .social-mobile {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: 26px;
+      margin-bottom: 0;
     }
-    .fixed.bottom-8.left-8 a {
-      display: inline-flex !important;
-    }
-  
+    /* Прячем старое позиционирование соцсетей */
+    .fixed.bottom-8.left-8 { display: none !important; }
+
     /* Меню — бургер */
     .burger { display: flex !important; }
     nav { display: none !important; }
@@ -312,6 +312,15 @@
         Уникальность — не тренд, а стандарт.
       </p>
     </div>
+    <!-- Соцсети для мобильных (вертикально по центру) -->
+    <div class="social-mobile" style="display:none;">
+      <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
+        <img src="public/Telegram.png" alt="Telegram" class="w-8 h-8 mb-1 hover-icon">
+      </a>
+      <a href="https://vk.com/de_korolev" target="_blank" title="VK" aria-label="VK">
+        <img src="public/Vk.png" alt="VK" class="w-8 h-8 hover-icon">
+      </a>
+    </div>
   </section>
 
   <!-- Соцсети внизу на первой вертикальной линии -->
@@ -394,6 +403,10 @@
     cursor.classList.add("animate-blink");
     loopAnimation();
     randomFlashLoop(); // запускаем эффект фона
+    // Включаем соцсети для мобильных
+    if (window.innerWidth <= 800) {
+      document.querySelector('.social-mobile').style.display = 'flex';
+    }
   });
 
   const grid = document.getElementById('static-grid');
