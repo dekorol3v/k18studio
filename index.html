@@ -108,11 +108,27 @@
       background: rgba(255,255,255,0.15);
       transition: background 0.3s ease;
     }
+
+    #grid-cursor {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      mask-image: radial-gradient(circle, white 50%, transparent 100%);
+    }
     
   </style>
 </head>
 <body class="relative w-full h-screen">
 
+  <div id="grid-cursor"></div>
+  
   <!-- Вертикальные линии -->
   <div class="absolute inset-0 z-0">
     <div class="gridline" style="left: 0%;"></div>    
@@ -248,7 +264,20 @@
     loopAnimation();
     randomFlashLoop(); // запускаем эффект фона
   });
-  </script>
 
+  const gridCursor = document.getElementById('grid-cursor');
+
+  document.addEventListener('mousemove', e => {
+    gridCursor.style.left = `${e.clientX - 100}px`; // центр по X
+    gridCursor.style.top = `${e.clientY - 100}px`;  // центр по Y
+    gridCursor.style.opacity = '1';
+  
+    clearTimeout(gridCursor._hideTimer);
+    gridCursor._hideTimer = setTimeout(() => {
+      gridCursor.style.opacity = '0';
+    }, 300); // исчезает, если мышь не двигается 300мс
+  });
+    
+  </script>
 </body>
 </html>
