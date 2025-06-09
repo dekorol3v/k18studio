@@ -72,6 +72,21 @@
     }
 
     ::-webkit-scrollbar { display: none; }
+
+    @keyframes pulse-bg {
+    0%, 100% { background-color: #151515; }
+    50%      { background-color: #1e1e1e; }
+    }
+    
+    .bg-animate {
+      animation: pulse-bg 6s ease-in-out infinite;
+    }
+    .bg-delay-1 { animation-delay: 0s; }
+    .bg-delay-2 { animation-delay: 1s; }
+    .bg-delay-3 { animation-delay: 2s; }
+    .bg-delay-4 { animation-delay: 3s; }
+    .bg-delay-5 { animation-delay: 4s; }
+
   </style>
 </head>
 <body class="relative w-full h-screen">
@@ -86,6 +101,15 @@
     <div class="gridline" style="left: 100%;"></div>  
   </div>
 
+  <!-- Анимированные фоны между линиями -->
+  <div class="absolute inset-0 z-[-1] flex w-full h-full">
+    <div class="w-[20%] bg-animate bg-delay-1"></div>
+    <div class="w-[20%] bg-animate bg-delay-2"></div>
+    <div class="w-[20%] bg-animate bg-delay-3"></div>
+    <div class="w-[20%] bg-animate bg-delay-4"></div>
+    <div class="w-[20%] bg-animate bg-delay-5"></div>
+  </div>
+  
   <!-- Верхнее меню -->
   <header class="relative w-full h-24 z-10">
 
