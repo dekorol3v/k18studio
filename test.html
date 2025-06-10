@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>K18 — Главная</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: #151515;
+      font-family: 'Fira Sans', Arial, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .gridline {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="relative w-full min-h-screen">
+  <!-- Вертикальные линии -->
+  <div class="absolute inset-0 z-0">
+    <div class="gridline" style="left:0%;"></div>
+    <div class="gridline" style="left:20%;"></div>
+    <div class="gridline" style="left:40%;"></div>
+    <div class="gridline" style="left:60%;"></div>
+    <div class="gridline" style="left:80%;"></div>
+    <div class="gridline" style="left:100%;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative w-full h-24 z-10 flex items-center">
+    <div class="pl-8 flex items-center h-full">
+      <img src="public/logo.png" alt="K18 Logo" class="h-12 w-auto" />
+      <!-- Логотип слева, далее меню -->
+    </div>
+    <nav class="ml-16 flex gap-10">
+      <a href="/" class="text-white font-bold opacity-85 hover:opacity-100 transition">Главная</a>
+      <a href="/projects" class="text-white font-bold opacity-85 hover:opacity-100 transition">Проекты</a>
+      <a href="/services" class="text-white font-bold opacity-85 hover:opacity-100 transition">Услуги</a>
+      <a href="/team" class="text-white font-bold opacity-85 hover:opacity-100 transition">Команда</a>
+      <a href="/about" class="text-white font-bold opacity-85 hover:opacity-100 transition">Об авторе</a>
+    </nav>
+  </header>
+
+  <!-- Основной контейнер (сюда вставлять содержимое страниц) -->
+  <main class="relative mx-auto" style="width:60%; left:20%;">
+    <!-- Контент страницы -->
+  </main>
+</body>
+</html>
