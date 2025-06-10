@@ -21,31 +21,43 @@
       width: 1px;
       background: rgba(255,255,255,0.08);
       pointer-events: none;
-      z-index: 0;
+      z-index: 10;
     }
     .menu-link {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
       color: #fff;
       font-weight: bold;
-      font-size: 1.2rem; /* крупнее */
+      font-size: 1.15rem;
       letter-spacing: 0.03em;
       opacity: 0.92;
       transition: opacity 0.18s;
       text-shadow: 0 2px 12px rgba(0,0,0,0.18);
       padding: 0 0.2em;
       white-space: nowrap;
+      border-radius: 0.5rem;
     }
     .menu-link:hover, .menu-link.active {
       opacity: 1;
       text-decoration: underline;
       text-underline-offset: 5px;
     }
+    @media (max-width: 900px) {
+      .desktop-menu {
+        display: none !important;
+      }
+      .mobile-menu {
+        display: flex !important;
+      }
+    }
+    @media (min-width: 900px) {
+      .mobile-menu {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body class="relative w-full min-h-screen">
-  <!-- Сетка (6 линий) -->
+
+  <!-- Сетка (6 линий), всегда совпадает с гридом -->
   <div class="absolute inset-0 z-0 pointer-events-none">
     <div class="gridline" style="left:0%;"></div>
     <div class="gridline" style="left:20%;"></div>
@@ -56,25 +68,42 @@
   </div>
 
   <!-- Шапка -->
-  <header class="relative w-full h-28 bg-[#181818] flex items-center px-8 z-10 shadow-lg">
-    <!-- Логотип слева в квадратной зоне -->
-    <div class="flex items-center justify-center h-20 w-20 rounded-xl bg-transparent">
-      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-16 object-contain" />
+  <header class="relative w-full h-28 bg-[#181818] shadow-lg z-20">
+    <div class="h-full grid grid-cols-6 items-center w-full max-w-screen-2xl mx-auto px-6">
+
+      <!-- Логотип: первая колонка -->
+      <div class="flex items-center justify-center h-20 w-20 rounded-xl col-span-1">
+        <img src="public/logo.png" alt="K18 Logo" class="h-16 w-16 object-contain" />
+      </div>
+
+      <!-- Меню: колонки 2-6 -->
+      <nav class="col-span-5 flex items-center h-full w-full relative">
+
+        <!-- Desktop menu (по сетке, равномерно по 5 колонкам) -->
+        <div class="desktop-menu w-full flex justify-between h-full">
+          <a href="/"         class="menu-link flex items-center h-full">Главная</a>
+          <a href="/projects" class="menu-link flex items-center h-full">Проекты</a>
+          <a href="/services" class="menu-link flex items-center h-full">Услуги</a>
+          <a href="/team"     class="menu-link flex items-center h-full">Команда</a>
+          <a href="/about"    class="menu-link flex items-center h-full">Об авторе</a>
+        </div>
+        <!-- Mobile menu (вертикальный список) -->
+        <div class="mobile-menu flex-col absolute left-0 top-full w-full bg-[#181818] shadow-md rounded-b-xl z-40 pt-3 pb-4 px-4">
+          <a href="/"         class="menu-link block py-2">Главная</a>
+          <a href="/projects" class="menu-link block py-2">Проекты</a>
+          <a href="/services" class="menu-link block py-2">Услуги</a>
+          <a href="/team"     class="menu-link block py-2">Команда</a>
+          <a href="/about"    class="menu-link block py-2">Об авторе</a>
+        </div>
+      </nav>
     </div>
-    <!-- Меню центрировано относительно header, а кнопки строго по линиям сетки -->
-    <nav class="flex-1 relative h-full">
-      <!-- Кнопки меню — absolute по сетке (2-я, между 2-3, 3-я, между 3-4, 4-я линия) -->
-      <a href="/"         class="menu-link" style="left:20%;">Главная</a>
-      <a href="/projects" class="menu-link" style="left:30%;">Проекты</a>
-      <a href="/services" class="menu-link" style="left:40%;">Услуги</a>
-      <a href="/team"     class="menu-link" style="left:50%;">Команда</a>
-      <a href="/about"    class="menu-link" style="left:60%;">Об авторе</a>
-    </nav>
   </header>
 
-  <!-- Демо-заполнитель для контента -->
+  <!-- Контент страницы -->
   <main class="w-full pt-16 flex justify-center items-center min-h-[400px]">
     <div class="text-neutral-400 text-2xl font-light">Контент страницы</div>
   </main>
+
+  <!-- (Опционально: если захочешь бургер-меню — добавим позже, пока меню всегда раскрыто для примера) -->
 </body>
 </html>
