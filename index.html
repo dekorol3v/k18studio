@@ -170,36 +170,33 @@
     </nav>
   </header>
 
-  <div class="relative w-full h-full min-h-screen grid grid-cols-6 z-20">
-
-    <!-- Центральный блок: текст -->
-    <section class="col-start-2 col-end-6 flex flex-col items-start justify-center relative" style="min-height: 100vh;">
-      <img src="public/logo.png" alt="" class="w-[240px] xl:w-[320px] h-auto mb-8" aria-hidden="true" style="margin-left:0;">
-      <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap" style="margin-left:0;">
-        <span id="typed-text"></span><span id="cursor" class="text-white animate-blink">|</span>
-      </h1>
-      <div class="w-full flex justify-start relative" style="height: 2.5rem;">
-        <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text"
-          style="left: 0; top: 0.5rem; margin:0;">
-          Уникальность — не тренд, а стандарт.
-        </p>
-      </div>
-    </section>
-
-    <!-- Фото по центру 4-й линии -->
-    <div class="col-start-4 col-end-5 flex items-end justify-center z-20 pointer-events-none">
-      <img src="public/my.png" alt="My Photo" class="w-[90%] max-w-[240px] h-auto object-contain">
+  <!-- Центральный блок: логотип и текст -->
+  <section class="absolute" style="left: 20%; top: 35%; width: 60%;">
+    <img src="public/logo.png" alt="" class="w-[240px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
+    <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap">
+      <span id="typed-text"></span><span id="cursor" class="text-white animate-blink">|</span>
+    </h1>
+    <div style="position: relative;">
+      <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text"
+         style="position: absolute; left: 0; top: 0.5rem;">
+        Уникальность — не тренд, а стандарт.
+      </p>
     </div>
+  </section>
 
-    <!-- Соцсети -->
-    <div class="col-start-1 col-end-2 flex flex-col gap-3 items-start justify-end pb-8 z-30" style="height: 100vh;">
-      <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
-        <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6 hover-icon">
-      </a>
-      <a href="https://vk.com/de_korolev" target="_blank" title="VK" aria-label="VK">
-        <img src="public/Vk.png" alt="VK" class="w-6 h-6 hover-icon">
-      </a>
-    </div>
+  <!-- Соцсети внизу -->
+  <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3">
+    <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
+      <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6 hover-icon">
+    </a>
+    <a href="https://vk.com/de_korolev" target="_blank" title="VK" aria-label="VK">
+      <img src="public/Vk.png" alt="VK" class="w-6 h-6 hover-icon">
+    </a>
+  </div>
+
+  <!-- Фото между 3 и 5 линией -->
+  <div class="absolute left-[40%] w-[40%] top-24 bottom-0 flex justify-center items-end z-10 overflow-hidden main-photo">
+    <img src="public/my.png" alt="My Photo" class="w-[60%] h-auto object-contain">
   </div>
 
   <script>
