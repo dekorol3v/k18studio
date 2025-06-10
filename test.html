@@ -23,6 +23,23 @@
       pointer-events: none;
       z-index: 0;
     }
+    .menu-link {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.15rem; /* увеличенный шрифт */
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.16);
+    }
+    .menu-link:hover, .menu-link.active {
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
   </style>
 </head>
 <body class="relative w-full min-h-screen">
@@ -30,28 +47,31 @@
   <div class="absolute inset-0 z-0">
     <div class="gridline" style="left:0%;"></div>
     <div class="gridline" style="left:20%;"></div>
+    <div class="gridline" style="left:30%;"></div>
     <div class="gridline" style="left:40%;"></div>
+    <div class="gridline" style="left:50%;"></div>
     <div class="gridline" style="left:60%;"></div>
     <div class="gridline" style="left:80%;"></div>
     <div class="gridline" style="left:100%;"></div>
   </div>
 
   <!-- Header -->
-  <header class="relative w-full h-24 z-10 flex items-center">
-    <div class="pl-8 flex items-center h-full">
-      <img src="public/logo.png" alt="K18 Logo" class="h-12 w-auto" />
-      <!-- Логотип слева, далее меню -->
+  <header class="relative w-full h-28 z-10">
+    <!-- Логотип -->
+    <div class="absolute top-6 left-8 flex items-center h-full">
+      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto" /> <!-- Логотип больше -->
     </div>
-    <nav class="ml-16 flex gap-10">
-      <a href="/" class="text-white font-bold opacity-85 hover:opacity-100 transition">Главная</a>
-      <a href="/projects" class="text-white font-bold opacity-85 hover:opacity-100 transition">Проекты</a>
-      <a href="/services" class="text-white font-bold opacity-85 hover:opacity-100 transition">Услуги</a>
-      <a href="/team" class="text-white font-bold opacity-85 hover:opacity-100 transition">Команда</a>
-      <a href="/about" class="text-white font-bold opacity-85 hover:opacity-100 transition">Об авторе</a>
+    <!-- Меню -->
+    <nav class="relative w-full h-full">
+      <a href="/"         class="menu-link" style="left:20%;">Главная</a>
+      <a href="/projects" class="menu-link" style="left:30%;">Проекты</a>
+      <a href="/services" class="menu-link" style="left:40%;">Услуги</a>
+      <a href="/team"     class="menu-link" style="left:50%;">Команда</a>
+      <a href="/about"    class="menu-link" style="left:60%;">Об авторе</a>
     </nav>
   </header>
 
-  <!-- Основной контейнер (сюда вставлять содержимое страниц) -->
+  <!-- Основной контейнер -->
   <main class="relative mx-auto" style="width:60%; left:20%;">
     <!-- Контент страницы -->
   </main>
