@@ -57,7 +57,7 @@
 </head>
 <body class="relative w-full min-h-screen">
 
-  <!-- Сетка (6 линий), всегда совпадает с гридом -->
+  <!-- Сетка (6 линий) -->
   <div class="absolute inset-0 z-0 pointer-events-none">
     <div class="gridline" style="left:0%;"></div>
     <div class="gridline" style="left:20%;"></div>
@@ -68,26 +68,24 @@
   </div>
 
   <!-- Шапка -->
-  <header class="relative w-full h-28 bg-[#181818] shadow-lg z-20">
-    <div class="h-full grid grid-cols-6 items-center w-full max-w-screen-2xl mx-auto px-6">
+  <header class="relative w-full z-20" style="background: transparent;">
+    <div class="h-28 grid grid-cols-6 items-center w-full max-w-screen-2xl mx-auto px-6">
 
-      <!-- Логотип: первая колонка -->
-      <div class="flex items-center justify-center h-20 w-20 rounded-xl col-span-1">
-        <img src="public/logo.png" alt="K18 Logo" class="h-16 w-16 object-contain" />
+      <!-- Логотип — 1 колонка, строго слева, отступы сверху/снизу равные -->
+      <div class="flex items-center justify-start h-full col-span-1 py-4">
+        <img src="public/logo.png" alt="K18 Logo" class="h-full object-contain" style="max-height: 60px;"/>
       </div>
 
-      <!-- Меню: колонки 2-6 -->
-      <nav class="col-span-5 flex items-center h-full w-full relative">
-
-        <!-- Desktop menu (по сетке, равномерно по 5 колонкам) -->
-        <div class="desktop-menu w-full flex justify-between h-full">
-          <a href="/"         class="menu-link flex items-center h-full">Главная</a>
-          <a href="/projects" class="menu-link flex items-center h-full">Проекты</a>
-          <a href="/services" class="menu-link flex items-center h-full">Услуги</a>
-          <a href="/team"     class="menu-link flex items-center h-full">Команда</a>
-          <a href="/about"    class="menu-link flex items-center h-full">Об авторе</a>
+      <!-- Меню — 2-6 колонки, кнопки строго по линиям начиная со 2-й -->
+      <nav class="col-span-5 flex items-center h-full w-full">
+        <div class="desktop-menu w-full grid grid-cols-5 h-full">
+          <a href="/"         class="menu-link flex items-center justify-center h-full">Главная</a>
+          <a href="/projects" class="menu-link flex items-center justify-center h-full">Проекты</a>
+          <a href="/services" class="menu-link flex items-center justify-center h-full">Услуги</a>
+          <a href="/team"     class="menu-link flex items-center justify-center h-full">Команда</a>
+          <a href="/about"    class="menu-link flex items-center justify-center h-full">Об авторе</a>
         </div>
-        <!-- Mobile menu (вертикальный список) -->
+        <!-- Mobile menu — при необходимости можно добавить бургер и раскрытие -->
         <div class="mobile-menu flex-col absolute left-0 top-full w-full bg-[#181818] shadow-md rounded-b-xl z-40 pt-3 pb-4 px-4">
           <a href="/"         class="menu-link block py-2">Главная</a>
           <a href="/projects" class="menu-link block py-2">Проекты</a>
@@ -104,6 +102,5 @@
     <div class="text-neutral-400 text-2xl font-light">Контент страницы</div>
   </main>
 
-  <!-- (Опционально: если захочешь бургер-меню — добавим позже, пока меню всегда раскрыто для примера) -->
 </body>
 </html>
