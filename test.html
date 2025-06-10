@@ -29,40 +29,41 @@
       transform: translateY(-50%);
       color: #fff;
       font-weight: bold;
-      font-size: 1.15rem; /* увеличенный шрифт */
-      letter-spacing: 0.04em;
-      opacity: 0.9;
-      transition: opacity 0.2s;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.16);
+      font-size: 1.2rem; /* крупнее */
+      letter-spacing: 0.03em;
+      opacity: 0.92;
+      transition: opacity 0.18s;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      padding: 0 0.2em;
+      white-space: nowrap;
     }
     .menu-link:hover, .menu-link.active {
       opacity: 1;
       text-decoration: underline;
-      text-underline-offset: 4px;
+      text-underline-offset: 5px;
     }
   </style>
 </head>
 <body class="relative w-full min-h-screen">
-  <!-- Вертикальные линии -->
-  <div class="absolute inset-0 z-0">
+  <!-- Сетка (6 линий) -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
     <div class="gridline" style="left:0%;"></div>
     <div class="gridline" style="left:20%;"></div>
-    <div class="gridline" style="left:30%;"></div>
     <div class="gridline" style="left:40%;"></div>
-    <div class="gridline" style="left:50%;"></div>
     <div class="gridline" style="left:60%;"></div>
     <div class="gridline" style="left:80%;"></div>
     <div class="gridline" style="left:100%;"></div>
   </div>
 
-  <!-- Header -->
-  <header class="relative w-full h-28 z-10">
-    <!-- Логотип -->
-    <div class="absolute top-6 left-8 flex items-center h-full">
-      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-auto" /> <!-- Логотип больше -->
+  <!-- Шапка -->
+  <header class="relative w-full h-28 bg-[#181818] flex items-center px-8 z-10 shadow-lg">
+    <!-- Логотип слева в квадратной зоне -->
+    <div class="flex items-center justify-center h-20 w-20 rounded-xl bg-transparent">
+      <img src="public/logo.png" alt="K18 Logo" class="h-16 w-16 object-contain" />
     </div>
-    <!-- Меню -->
-    <nav class="relative w-full h-full">
+    <!-- Меню центрировано относительно header, а кнопки строго по линиям сетки -->
+    <nav class="flex-1 relative h-full">
+      <!-- Кнопки меню — absolute по сетке (2-я, между 2-3, 3-я, между 3-4, 4-я линия) -->
       <a href="/"         class="menu-link" style="left:20%;">Главная</a>
       <a href="/projects" class="menu-link" style="left:30%;">Проекты</a>
       <a href="/services" class="menu-link" style="left:40%;">Услуги</a>
@@ -71,9 +72,9 @@
     </nav>
   </header>
 
-  <!-- Основной контейнер -->
-  <main class="relative mx-auto" style="width:60%; left:20%;">
-    <!-- Контент страницы -->
+  <!-- Демо-заполнитель для контента -->
+  <main class="w-full pt-16 flex justify-center items-center min-h-[400px]">
+    <div class="text-neutral-400 text-2xl font-light">Контент страницы</div>
   </main>
 </body>
 </html>
