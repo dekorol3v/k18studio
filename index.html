@@ -2,303 +2,314 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>K18 — Главная</title>
+  <title>K18 Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fira Sans -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #151515;
+      --block: #151515;
+      --block-active: #1e1e1e;
+      --line: #202020;
+      --line-hover: #3a3a3a;
+      --grid-opacity: 0.15;
+      --grid-opacity-active: 0.5;
+      --text: #fff;
+    }
     html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      background-color: transparent;
-      overflow-x: hidden;
       font-family: 'Fira Sans', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
     }
-
-    .gridline {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background-color: rgba(255, 255, 255, 0.08);
-      pointer-events: none;
+    body {
+      position: relative;
+      min-height: 100vh;
       z-index: 0;
     }
 
-    .menu-link {
-      position: absolute;
-      color: white;
-      font-weight: bold;
-      font-size: 0.875rem;
-      letter-spacing: 0.05em;
-      opacity: 0.85;
-      transition: opacity 0.3s ease;
-    }
-
-    .menu-link::after {
-      content: '';
-      display: block;
-      height: 2px;
-      background-color: white;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-      margin-top: 4px;
-    }
-
-    .menu-link:hover,
-    .menu-link.active {
-      opacity: 1;
-    }
-    .menu-link:hover::after,
-    .menu-link.active::after {
-      transform: scaleX(1);
-    }
-
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-
-    .animate-blink {
-      animation: blink 1s step-start infinite;
-    }
-
-    ::-webkit-scrollbar { display: none; }
-
-    @keyframes pulse-bg {
-      0%, 100% { background-color: #151515; }
-      50%      { background-color: #1e1e1e; }
-    }
-
-    .bg-section {
-      background-color: #151515;
-      transition: background-color 1s ease;
-    }
-    .bg-highlight {
-      background-color: #1e1e1e !important;
-    }
-
-    .hover-icon {
-      transition: transform 0.25s ease;
-    }
-    .hover-icon:hover {
-      transform: scale(1.15);
-    }
-
-    .gridline:hover {
-      background: rgba(255,255,255,0.15);
-      transition: background 0.3s ease;
-    }
-
-    #static-grid {
-      position: fixed;
-      inset: 0;
+    /* Сетка линий */
+    .grid {
       pointer-events: none;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 20px 20px;
-      background-position: 0 0;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+    }
+
+    .grid-canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+
+    /* Блоки */
+    .blocks {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0; left: 0;
       z-index: 1;
-      mask-image:
-        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
-        radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,1) 0%, transparent 80%);
-      -webkit-mask-image:
-        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
-        radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,1) 0%, transparent 80%);
-      mask-repeat: no-repeat;
-      -webkit-mask-repeat: no-repeat;
-      transition: mask-image 0.3s ease;
+    }
+    .block {
+      transition: background 0.6s;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* Контент */
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 100vh;
+      pointer-events: none;
+    }
+
+    .header {
+      grid-column: 2 / span 4;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding-top: 36px;
+      pointer-events: auto;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 18px;
+      font-size: 1.13rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+      transition: border .2s;
+    }
+    .nav-link.active, .nav-link:hover {
+      border-bottom: 2px solid #fff;
+    }
+
+    /* Лого и слоган */
+    .main-logo {
+      grid-column: 2 / span 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 80vh;
+      gap: 20px;
+      pointer-events: auto;
+    }
+    .logo-img {
+      font-size: 70px;
+      font-weight: 700;
+      letter-spacing: -7px;
+      line-height: 0.9;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .main-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .slogan {
+      font-size: 1.07rem;
+      font-weight: 400;
+      color: #bbb;
+      letter-spacing: 0.08em;
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #fff 0%, #4d4d4d 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slogan-glow 10s linear infinite;
+    }
+
+    @keyframes slogan-glow {
+      0% { background-position: 200% 0;}
+      5% { background-position: 0 0;}
+      95% { background-position: 0 0;}
+      100% { background-position: 200% 0;}
+    }
+
+    /* Фото автора (пример, замени на свое) */
+    .author-img {
+      grid-column: 4 / span 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 80vh;
+      pointer-events: auto;
+    }
+    .author-img img {
+      max-height: 75vh;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 48px #0006);
+    }
+
+    /* Левый сайдбар */
+    .sidebar {
+      position: absolute;
+      top: 0; left: 0;
+      width: 90px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 3;
+      pointer-events: auto;
+    }
+    .sidebar-logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -3px;
+      margin: 38px 0 0 0;
+    }
+    .sidebar-socials {
+      position: absolute;
+      bottom: 26px;
+      left: 0; width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    .sidebar-socials a {
+      color: #fff;
+      opacity: 0.8;
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .sidebar-socials a:hover {
       opacity: 1;
     }
 
-    @keyframes textShine {
-      0%, 16.6%, 100% { color: #6b7280; }
-      8.3% { color: #a3a3a3; }
-    }
-    .shiny-text span {
-      display: inline-block;
-      color: #6b7280;
-      animation: textShine 12s linear infinite;
-    }
-    .shiny-text .invisible {
-      opacity: 0;
-      width: 0.65em;
-      animation: none !important;
-      display: inline-block;
+    /* Для адаптива — убери, если не нужен */
+    @media (max-width: 900px) {
+      .header, .main-logo, .author-img, .content { display: none; }
+      body::after {
+        content: 'Мобильная версия в разработке';
+        position: absolute;
+        top: 45vh;
+        left: 0;
+        width: 100vw;
+        color: #fff;
+        text-align: center;
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
-<body class="relative w-full h-screen">
-  
-  <!-- Вертикальные линии -->
-  <div class="absolute inset-0 z-0">
-    <div class="gridline" style="left: 0%;"></div>    
-    <div class="gridline" style="left: 20%;"></div>   
-    <div class="gridline" style="left: 40%;"></div>   
-    <div class="gridline" style="left: 60%;"></div>   
-    <div class="gridline" style="left: 80%;"></div>   
-    <div class="gridline" style="left: 100%;"></div>
+<body>
+  <div class="grid">
+    <canvas class="grid-canvas"></canvas>
   </div>
 
-  <!-- Анимированные фоны между линиями -->
-  <div class="absolute inset-0 z-[-1] flex w-full h-full">
-    <div class="w-[20%] bg-section" id="block-1"></div>
-    <div class="w-[20%] bg-section" id="block-2"></div>
-    <div class="w-[20%] bg-section" id="block-3"></div>
-    <div class="w-[20%] bg-section" id="block-4"></div>
-    <div class="w-[20%] bg-section" id="block-5"></div>
+  <div class="blocks" id="blocks">
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
   </div>
 
-  <!-- Сетка -->
-  <div class="absolute inset-0 z-[1] pointer-events-none">
-    <div id="static-grid"></div>
-  </div>
-  
-  <!-- Верхнее меню -->
-  <header class="relative w-full h-24 z-10">
-    <div class="absolute top-8 left-8">
-      <img src="public/logo.png" alt="K18 Logo" class="h-12 w-auto">
+  <div class="content">
+    <div class="sidebar">
+      <div class="sidebar-logo">K18</div>
+      <div class="sidebar-socials">
+        <a href="https://t.me/" target="_blank">🗨️</a>
+        <a href="https://vk.com/" target="_blank">vk</a>
+      </div>
     </div>
-    <nav class="absolute top-1/2 -translate-y-1/2 w-full z-10">
-      <a href="/" class="menu-link" style="left: 20%;">Главная</a>
-      <a href="/projects" class="menu-link" style="left: 30%;">Проекты</a>
-      <a href="/services" class="menu-link" style="left: 40%;">Услуги</a>
-      <a href="team.html" class="menu-link" style="left: 50%;">Команда</a>
-      <a href="/about" class="menu-link" style="left: 60%;">Об авторе</a>
-    </nav>
-  </header>
-
-  <!-- Центральный блок: логотип и текст -->
-  <section class="absolute" style="left: 20%; top: 35%; width: 60%;">
-    <img src="public/logo.png" alt="" class="w-[240px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
-    <h1 class="text-white text-4xl xl:text-5xl font-bold tracking-wider mb-3 whitespace-nowrap">
-      <span id="typed-text"></span><span id="cursor" class="text-white animate-blink">|</span>
-    </h1>
-    <div style="position: relative;">
-      <p class="text-neutral-500 text-sm tracking-widest font-light uppercase shiny-text"
-         style="position: absolute; left: 0; top: 0.5rem;">
-        Уникальность — не тренд, а стандарт.
-      </p>
+    <div class="header">
+      <a href="#" class="nav-link active">Главная</a>
+      <a href="#" class="nav-link">Проекты</a>
+      <a href="#" class="nav-link">Услуги</a>
+      <a href="#" class="nav-link">Команда</a>
+      <a href="#" class="nav-link">Об авторе</a>
     </div>
-  </section>
-
-  <!-- Соцсети внизу -->
-  <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3">
-    <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
-      <img src="public/Telegram.png" alt="Telegram" class="w-6 h-6 hover-icon">
-    </a>
-    <a href="https://vk.com/de_korolev" target="_blank" title="VK" aria-label="VK">
-      <img src="public/Vk.png" alt="VK" class="w-6 h-6 hover-icon">
-    </a>
+    <div class="main-logo">
+      <div class="logo-img">K18</div>
+      <div class="main-title">KOROLEV DEN</div>
+      <div class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</div>
+    </div>
+    <div class="author-img">
+      <img src="author.png" alt="Author">
+    </div>
   </div>
-
-  <!-- Фото между 3 и 5 линией -->
-  <div class="absolute left-[40%] w-[40%] top-24 bottom-0 flex justify-center items-end z-10 overflow-hidden main-photo">
-    <img src="public/my.png" alt="My Photo" class="w-[60%] h-auto object-contain">
-  </div>
-
   <script>
-    (() => {
-      // --- КОНСТАНТЫ ---
-      const menuLinks = document.querySelectorAll('.menu-link');
-      const typedText = document.getElementById('typed-text');
-      const cursor = document.getElementById('cursor');
-      const shinyText = document.querySelector('.shiny-text');
-      const grid = document.getElementById('static-grid');
-      const typingText = "KOROLEV DENIS";
-      const blocks = [
-        document.getElementById('block-1'),
-        document.getElementById('block-2'),
-        document.getElementById('block-3'),
-        document.getElementById('block-4'),
-        document.getElementById('block-5')
-      ];
-
-      // --- МЕНЮ: активная ссылка ---
-      const currentPath = window.location.pathname;
-      menuLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (
-          (href === '/' && currentPath === '/') || 
-          (href !== '/' && currentPath.startsWith(href))
-        ) {
-          link.classList.add('active');
-        }
-      });
-
-      // --- АНИМАЦИЯ ИМЕНИ ---
-      let index = 0, typing = true;
-      function loopAnimation() {
-        if (typing) {
-          if (index < typingText.length) {
-            typedText.textContent += typingText.charAt(index);
-            index++;
-            setTimeout(loopAnimation, 120);
-          } else {
-            setTimeout(() => {
-              typing = false;
-              loopAnimation();
-            }, 15000);
-          }
-        } else {
-          if (index > 0) {
-            typedText.textContent = typingText.substring(0, index - 1);
-            index--;
-            setTimeout(loopAnimation, 80);
-          } else {
-            typing = true;
-            loopAnimation();
-          }
-        }
+    // Сетка и подсветка мыши
+    const canvas = document.querySelector('.grid-canvas');
+    function drawGrid(cursor) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width, h = canvas.height;
+      const cols = 6;
+      // Вертикальные линии
+      for(let i=0; i<cols; i++) {
+        const x = i*w/(cols-1);
+        let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity'));
+        if(cursor && Math.abs(cursor.x-x)<40) alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active'));
+        ctx.beginPath();
+        ctx.moveTo(x, 0); ctx.lineTo(x, h);
+        ctx.strokeStyle = `rgba(58,58,58,${alpha})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
       }
-
-      // --- СЛУЧАЙНАЯ ПОДСВЕТКА ФОНОВ ---
-      function randomFlashLoop() {
-        const randomIndex = Math.floor(Math.random() * blocks.length);
-        const el = blocks[randomIndex];
-        el.classList.add('bg-highlight');
-        setTimeout(() => el.classList.remove('bg-highlight'), 1000);
-        setTimeout(randomFlashLoop, 2000);
+      // Горизонтальные линии (каждые 48px)
+      for(let y=0; y<h; y+=48) {
+        let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity')) * 0.7;
+        if(cursor && Math.abs(cursor.y-y)<30) alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active')) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, y); ctx.lineTo(w, y);
+        ctx.strokeStyle = `rgba(58,58,58,${alpha})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
+    }
+    function resizeGrid() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawGrid();
+    }
+    window.addEventListener('resize', resizeGrid);
+    resizeGrid();
 
-      // --- СЕТКА КУРСОРА ---
-      let hideTimeout;
-      document.addEventListener('mousemove', e => {
-        grid.style.setProperty('--x', `${e.clientX}px`);
-        grid.style.setProperty('--y', `${e.clientY}px`);
-        grid.style.opacity = '1';
-        clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => { grid.style.opacity = '0.4'; }, 1000);
-      });
+    let lastCursor = null;
+    document.body.addEventListener('mousemove', (e) => {
+      lastCursor = {x: e.clientX, y: e.clientY};
+      drawGrid(lastCursor);
+    });
+    document.body.addEventListener('mouseleave', () => {
+      lastCursor = null;
+      drawGrid();
+    });
 
-      // --- АНИМАЦИЯ ПОДЗАГОЛОВКА ---
-      if (shinyText) {
-        const text = shinyText.textContent;
-        shinyText.textContent = '';
-        const trimmedText = text.replace(/^\s+/, '');
-        for (let i = 0; i < trimmedText.length; i++) {
-          const char = trimmedText[i];
-          const span = document.createElement('span');
-          if (char === ' ') {
-            span.className = 'invisible';
-            span.innerHTML = '&nbsp;';
-          } else {
-            span.textContent = char;
-            span.style.animationDelay = `${i * 0.08}s`;
-          }
-          shinyText.appendChild(span);
-        }
-      }
-
-      // --- ЗАПУСК ---
-      window.addEventListener('DOMContentLoaded', () => {
-        cursor.classList.add("animate-blink");
-        loopAnimation();
-        randomFlashLoop();
-      });
-    })();
+    // Анимация блоков
+    const blocks = document.querySelectorAll('.block');
+    setInterval(() => {
+      const i = Math.floor(Math.random() * blocks.length);
+      blocks[i].style.transition = 'background 0.5s';
+      blocks[i].style.background = 'var(--block-active)';
+      setTimeout(()=> {
+        blocks[i].style.background = 'var(--block)';
+      }, 500);
+    }, 2000);
   </script>
 </body>
 </html>
