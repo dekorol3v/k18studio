@@ -11,280 +11,336 @@
       --bg: #151515;
       --block: #151515;
       --block-active: #1e1e1e;
-      --line: #202020;
-      --line-hover: #3a3a3a;
-      --grid-opacity: 0.15;
-      --grid-opacity-active: 0.5;
+      --line: #232323;
+      --grid: #222;
+      --grid-active: #444;
+      --grid-opacity: 0.11;
+      --grid-opacity-active: 0.40;
       --text: #fff;
+      --text-secondary: #bbb;
+      --accent: #fff;
     }
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Fira Sans', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
+      font-family: 'Fira Sans', Arial, sans-serif;
+      height: 100%;
+      width: 100vw;
+      overflow: hidden; /* нет скролла */
+      box-sizing: border-box;
     }
     body {
       position: relative;
-      min-height: 100vh;
-      z-index: 0;
+      width: 100vw; height: 100vh;
+      min-height: 100vh; min-width: 100vw;
+      box-sizing: border-box;
     }
 
-    /* Сетка линий */
-    .grid {
-      pointer-events: none;
+    /* --- Сетка и вертикальные линии --- */
+    .grid-canvas, .vlines-canvas {
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 0;
-    }
-
-    .grid-canvas {
-      width: 100vw;
-      height: 100vh;
-      display: block;
-    }
-
-    /* Блоки */
-    .blocks {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
       top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .vlines-canvas {
       z-index: 1;
     }
-    .block {
-      transition: background 0.6s;
-      height: 100vh;
-      width: 100%;
-    }
 
-    /* Контент */
-    .content {
-      position: relative;
-      z-index: 2;
-      width: 100vw;
-      height: 100vh;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: 100vh;
-      pointer-events: none;
-    }
-
-    .header {
-      grid-column: 2 / span 4;
+    /* --- Логотип --- */
+    .logo-k18 {
+      position: absolute;
+      top: 38px;
+      left: 38px;
+      width: 58px;
+      height: 58px;
+      z-index: 10;
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      padding-top: 36px;
+      background: none;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .logo-k18 img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+    }
+
+    /* --- Меню --- */
+    .menu {
+      position: absolute;
+      top: 54px;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      gap: 0;
+      z-index: 11;
+      pointer-events: none; /* разблокируем на кнопках */
+    }
+    .menu-group {
+      display: flex;
+      gap: 36px;
       pointer-events: auto;
     }
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
+    .menu-link {
+      font-size: 1.09rem;
       font-weight: 700;
-      margin: 0 18px;
-      font-size: 1.13rem;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 3px;
-      transition: border .2s;
+      color: var(--text-secondary);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.22s;
+      padding-bottom: 5px;
+      pointer-events: auto;
     }
-    .nav-link.active, .nav-link:hover {
-      border-bottom: 2px solid #fff;
+    .menu-link.active,
+    .menu-link:hover {
+      color: var(--accent);
+    }
+    .menu-link::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0;
+      height: 2.5px;
+      background: var(--accent);
+      transition: width 0.34s cubic-bezier(.8,0,.2,1);
+      border-radius: 3px;
+      opacity: 0.9;
+    }
+    .menu-link:hover::after,
+    .menu-link.active::after {
+      width: 100%;
+      opacity: 1;
+    }
+    .menu-link:not(:hover):not(.active)::after {
+      width: 0;
+      opacity: 0.7;
     }
 
-    /* Лого и слоган */
-    .main-logo {
+    /* --- Соцсети --- */
+    .sidebar-socials {
+      position: absolute;
+      left: 44px;
+      bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      z-index: 10;
+    }
+    .sidebar-socials a img {
+      width: 30px;
+      height: 30px;
+      filter: grayscale(1) brightness(0.7);
+      transition: filter 0.2s;
+      user-select: none;
+    }
+    .sidebar-socials a:hover img {
+      filter: grayscale(0) brightness(1.2);
+    }
+
+    /* --- Центральная часть --- */
+    .main-content {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 5;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      pointer-events: none;
+    }
+    /* 6 колонок по 1fr для грид-разметки */
+    .main-grid {
+      display: grid;
+      width: 100vw;
+      height: 100vh;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 100vh;
+    }
+
+    /* Левая часть (лого, имя, слоган) — строго по гриду */
+    .main-left {
       grid-column: 2 / span 2;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       justify-content: center;
-      height: 80vh;
-      gap: 20px;
+      align-items: flex-start;
       pointer-events: auto;
+      margin-left: 30px;
     }
-    .logo-img {
-      font-size: 70px;
+    .logo-large {
+      font-size: 74px;
       font-weight: 700;
+      margin-bottom: 18px;
+      color: #fff;
       letter-spacing: -7px;
       line-height: 0.9;
-      margin-bottom: 24px;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+    /* Анимация печатания */
     .main-title {
-      font-size: 2.3rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      margin-top: 0;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+    }
+    #typed-cursor {
+      font-weight: 400;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-left: 2px;
+      animation: blink-cursor 1s steps(1) infinite;
+    }
+    @keyframes blink-cursor {
+      0%, 50% { opacity: 1;}
+      51%, 100% { opacity: 0;}
     }
     .slogan {
-      font-size: 1.07rem;
+      font-size: 1.06rem;
       font-weight: 400;
       color: #bbb;
-      letter-spacing: 0.08em;
-      margin-top: 12px;
+      letter-spacing: 0.07em;
+      margin-top: 18px;
       position: relative;
-      overflow: hidden;
-      background: linear-gradient(90deg, #fff 0%, #4d4d4d 100%);
+      background: linear-gradient(90deg, #fff 0%, #606060 100%);
       background-size: 200% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: slogan-glow 10s linear infinite;
+      user-select: none;
     }
-
     @keyframes slogan-glow {
       0% { background-position: 200% 0;}
       5% { background-position: 0 0;}
       95% { background-position: 0 0;}
       100% { background-position: 200% 0;}
     }
-
-    /* Фото автора (пример, замени на свое) */
-    .author-img {
+    /* Правая часть — фото */
+    .main-photo {
       grid-column: 4 / span 2;
       display: flex;
-      align-items: flex-end;
       justify-content: center;
-      height: 80vh;
+      align-items: flex-end;
       pointer-events: auto;
     }
-    .author-img img {
-      max-height: 75vh;
-      width: auto;
+    .main-photo img {
+      max-height: 78vh;
       object-fit: contain;
-      filter: drop-shadow(0 8px 48px #0006);
+      filter: drop-shadow(0 8px 48px #0007);
+      user-select: none;
     }
 
-    /* Левый сайдбар */
-    .sidebar {
-      position: absolute;
-      top: 0; left: 0;
-      width: 90px;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      z-index: 3;
-      pointer-events: auto;
-    }
-    .sidebar-logo {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -3px;
-      margin: 38px 0 0 0;
-    }
-    .sidebar-socials {
-      position: absolute;
-      bottom: 26px;
-      left: 0; width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-    .sidebar-socials a {
-      color: #fff;
-      opacity: 0.8;
-      font-size: 1.3rem;
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-    .sidebar-socials a:hover {
-      opacity: 1;
-    }
+    /* --- Disable select everywhere --- */
+    * { user-select: none; }
 
-    /* Для адаптива — убери, если не нужен */
-    @media (max-width: 900px) {
-      .header, .main-logo, .author-img, .content { display: none; }
-      body::after {
-        content: 'Мобильная версия в разработке';
-        position: absolute;
-        top: 45vh;
-        left: 0;
-        width: 100vw;
-        color: #fff;
-        text-align: center;
-        font-size: 2rem;
-      }
-    }
+    /* --- Адаптив не нужен --- */
   </style>
 </head>
 <body>
-  <div class="grid">
-    <canvas class="grid-canvas"></canvas>
-  </div>
+  <!-- Вертикальные линии -->
+  <canvas class="vlines-canvas"></canvas>
+  <!-- Сетка -->
+  <canvas class="grid-canvas"></canvas>
 
-  <div class="blocks" id="blocks">
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
+  <!-- Логотип -->
+  <a class="logo-k18" href="/">
+    <img src="public/logo.png" alt="K18">
+  </a>
+  <!-- Соцсети -->
+  <div class="sidebar-socials">
+    <a href="https://t.me/" target="_blank"><img src="public/Telegram.png" alt="Telegram"></a>
+    <a href="https://vk.com/" target="_blank"><img src="public/Vk.png" alt="VK"></a>
   </div>
+  <!-- Меню -->
+  <nav class="menu">
+    <div style="flex: 2 2 0;"></div>
+    <div class="menu-group" style="flex:0 0 auto;">
+      <a href="#" class="menu-link active">Главная</a>
+      <a href="#" class="menu-link">Проекты</a>
+    </div>
+    <div style="flex: 1 1 0;"></div>
+    <div class="menu-group" style="flex:0 0 auto;">
+      <a href="#" class="menu-link">Услуги</a>
+      <a href="#" class="menu-link">Команда</a>
+    </div>
+    <div style="flex: 1 1 0;"></div>
+    <div class="menu-group" style="flex:0 0 auto;">
+      <a href="#" class="menu-link">Об авторе</a>
+    </div>
+    <div style="flex: 1 1 0;"></div>
+  </nav>
 
-  <div class="content">
-    <div class="sidebar">
-      <div class="sidebar-logo">K18</div>
-      <div class="sidebar-socials">
-        <a href="https://t.me/" target="_blank">🗨️</a>
-        <a href="https://vk.com/" target="_blank">vk</a>
+  <!-- Контент -->
+  <div class="main-content">
+    <div class="main-grid">
+      <div class="main-left">
+        <div class="logo-large">
+          <img src="public/logo.png" alt="K18" style="height: 70px; width:auto;">
+        </div>
+        <div class="main-title">
+          <span id="typed-text"></span><span id="typed-cursor">|</span>
+        </div>
+        <div class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</div>
       </div>
-    </div>
-    <div class="header">
-      <a href="#" class="nav-link active">Главная</a>
-      <a href="#" class="nav-link">Проекты</a>
-      <a href="#" class="nav-link">Услуги</a>
-      <a href="#" class="nav-link">Команда</a>
-      <a href="#" class="nav-link">Об авторе</a>
-    </div>
-    <div class="main-logo">
-      <div class="logo-img">K18</div>
-      <div class="main-title">KOROLEV DEN</div>
-      <div class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</div>
-    </div>
-    <div class="author-img">
-      <img src="author.png" alt="Author">
+      <div class="main-photo">
+        <img src="public/my.png" alt="Фото">
+      </div>
     </div>
   </div>
   <script>
-    // Сетка и подсветка мыши
-    const canvas = document.querySelector('.grid-canvas');
-    function drawGrid(cursor) {
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const w = canvas.width, h = canvas.height;
+    // --- Вертикальные линии ---
+    const vlines = document.querySelector('.vlines-canvas');
+    function drawVLines() {
+      const ctx = vlines.getContext('2d');
+      vlines.width = window.innerWidth;
+      vlines.height = window.innerHeight;
       const cols = 6;
-      // Вертикальные линии
-      for(let i=0; i<cols; i++) {
-        const x = i*w/(cols-1);
-        let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity'));
-        if(cursor && Math.abs(cursor.x-x)<40) alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active'));
+      for (let i = 0; i < cols; i++) {
+        const x = i * vlines.width / (cols - 1);
         ctx.beginPath();
-        ctx.moveTo(x, 0); ctx.lineTo(x, h);
-        ctx.strokeStyle = `rgba(58,58,58,${alpha})`;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      }
-      // Горизонтальные линии (каждые 48px)
-      for(let y=0; y<h; y+=48) {
-        let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity')) * 0.7;
-        if(cursor && Math.abs(cursor.y-y)<30) alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active')) * 0.5;
-        ctx.beginPath();
-        ctx.moveTo(0, y); ctx.lineTo(w, y);
-        ctx.strokeStyle = `rgba(58,58,58,${alpha})`;
-        ctx.lineWidth = 1;
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, vlines.height);
+        ctx.strokeStyle = 'rgba(35,35,35,1)';
+        ctx.lineWidth = 2;
         ctx.stroke();
       }
     }
+    window.addEventListener('resize', drawVLines);
+    drawVLines();
+
+    // --- Сетка ---
+    const grid = document.querySelector('.grid-canvas');
+    function drawGrid(cursor) {
+      const ctx = grid.getContext('2d');
+      grid.width = window.innerWidth;
+      grid.height = window.innerHeight;
+      const size = 32;
+      for (let x = 0; x < grid.width; x += size) {
+        for (let y = 0; y < grid.height; y += size) {
+          let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity'));
+          if (cursor && Math.abs(cursor.x - x) < 80 && Math.abs(cursor.y - y) < 80)
+            alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active'));
+          ctx.beginPath();
+          ctx.rect(x, y, size, size);
+          ctx.strokeStyle = `rgba(68,68,68,${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
     function resizeGrid() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
       drawGrid();
     }
     window.addEventListener('resize', resizeGrid);
@@ -300,16 +356,56 @@
       drawGrid();
     });
 
-    // Анимация блоков
-    const blocks = document.querySelectorAll('.block');
-    setInterval(() => {
-      const i = Math.floor(Math.random() * blocks.length);
-      blocks[i].style.transition = 'background 0.5s';
-      blocks[i].style.background = 'var(--block-active)';
-      setTimeout(()=> {
-        blocks[i].style.background = 'var(--block)';
-      }, 500);
-    }, 2000);
+    // --- Typing Animation for "KOROLEV DEN" ---
+    const text = 'KOROLEV DEN';
+    const textEl = document.getElementById('typed-text');
+    const cursorEl = document.getElementById('typed-cursor');
+
+    let state = 'typing'; // 'typing' | 'waiting' | 'erasing'
+    let idx = 0;
+    let blinkInterval;
+    let cyclePause = 15000; // 15 сек
+
+    function setText(s) {
+      textEl.textContent = s;
+    }
+    function blinkCursor() {
+      cursorEl.style.visibility = cursorEl.style.visibility === 'hidden' ? 'visible' : 'hidden';
+    }
+    function startBlink() {
+      if (blinkInterval) clearInterval(blinkInterval);
+      cursorEl.style.visibility = 'visible';
+      blinkInterval = setInterval(blinkCursor, 500);
+    }
+    function stopBlink() {
+      if (blinkInterval) clearInterval(blinkInterval);
+      cursorEl.style.visibility = 'visible';
+    }
+    async function typeLoop() {
+      while (true) {
+        // typing
+        state = 'typing';
+        for (idx = 1; idx <= text.length; idx++) {
+          setText(text.slice(0, idx));
+          stopBlink();
+          await new Promise(r => setTimeout(r, 70));
+        }
+        // blinking, waiting
+        state = 'waiting';
+        startBlink();
+        await new Promise(r => setTimeout(r, cyclePause));
+        // erasing
+        state = 'erasing';
+        stopBlink();
+        for (idx = text.length; idx >= 0; idx--) {
+          setText(text.slice(0, idx));
+          await new Promise(r => setTimeout(r, 40));
+        }
+        // pause before typing again
+        await new Promise(r => setTimeout(r, 700));
+      }
+    }
+    typeLoop();
   </script>
 </body>
 </html>
