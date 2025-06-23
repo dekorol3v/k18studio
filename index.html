@@ -2,61 +2,91 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>K18 Studio</title>
+  <title>K18 — Главная</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fira Sans -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #151515;
-      --block: #151515;
-      --block-active: #1e1e1e;
-      --line: #232323;
-      --grid: #222;
-      --grid-active: #444;
-      --grid-opacity: 0.11;
-      --grid-opacity-active: 0.40;
-      --text: #fff;
-      --text-secondary: #bbb;
-      --accent: #fff;
-    }
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Fira Sans', Arial, sans-serif;
-      height: 100%;
+      height: 100vh;
       width: 100vw;
-      overflow: hidden; /* нет скролла */
-      box-sizing: border-box;
-    }
-    body {
-      position: relative;
-      width: 100vw; height: 100vh;
-      min-height: 100vh; min-width: 100vw;
-      box-sizing: border-box;
+      overflow: hidden !important;
+      font-family: 'Fira Sans', Arial, sans-serif;
+      background: #151515;
     }
 
-    /* --- Сетка и вертикальные линии --- */
-    .grid-canvas, .vlines-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
+    .gridline {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1.5px;
+      background-color: rgba(255, 255, 255, 0.09);
       pointer-events: none;
-    }
-    .vlines-canvas {
-      z-index: 1;
+      z-index: 0;
     }
 
-    /* --- Логотип --- */
+    /* Сетка */
+    #static-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-position: 0 0;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity .4s;
+      mask-image:
+        radial-gradient(circle 180px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.5) 0%, transparent 100%);
+      -webkit-mask-image:
+        radial-gradient(circle 180px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.5) 0%, transparent 100%);
+    }
+
+    /* Верхнее меню */
+    .menu-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.96rem;
+      letter-spacing: 0.06em;
+      opacity: 0.83;
+      transition: opacity 0.3s, color .23s;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      display: inline-block;
+    }
+    .menu-link.active,
+    .menu-link:hover {
+      opacity: 1;
+      color: #fff;
+    }
+    .menu-link::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background-color: #fff;
+      border-radius: 1.5px;
+      width: 0%;
+      transition: width 0.33s cubic-bezier(.77,.12,.14,1.09);
+      position: absolute;
+      left: 0; bottom: -3px;
+    }
+    .menu-link.active::after,
+    .menu-link:hover::after {
+      width: 100%;
+    }
+
+    /* Логотип сверху слева */
     .logo-k18 {
       position: absolute;
       top: 38px;
       left: 38px;
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       z-index: 10;
       display: flex;
       align-items: center;
@@ -72,79 +102,20 @@
       user-select: none;
     }
 
-    /* --- Меню --- */
-    .menu {
-      position: absolute;
-      top: 54px;
-      left: 0;
-      width: 100vw;
-      display: flex;
-      gap: 0;
-      z-index: 11;
-      pointer-events: none; /* разблокируем на кнопках */
-    }
-    .menu-group {
-      display: flex;
-      gap: 36px;
-      pointer-events: auto;
-    }
-    .menu-link {
-      font-size: 1.09rem;
-      font-weight: 700;
-      color: var(--text-secondary);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.22s;
-      padding-bottom: 5px;
-      pointer-events: auto;
-    }
-    .menu-link.active,
-    .menu-link:hover {
-      color: var(--accent);
-    }
-    .menu-link::after {
-      content: "";
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 0;
-      height: 2.5px;
-      background: var(--accent);
-      transition: width 0.34s cubic-bezier(.8,0,.2,1);
-      border-radius: 3px;
-      opacity: 0.9;
-    }
-    .menu-link:hover::after,
-    .menu-link.active::after {
-      width: 100%;
-      opacity: 1;
-    }
-    .menu-link:not(:hover):not(.active)::after {
-      width: 0;
-      opacity: 0.7;
-    }
-
-    /* --- Соцсети --- */
-    .sidebar-socials {
-      position: absolute;
-      left: 44px;
-      bottom: 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      z-index: 10;
-    }
+    /* Соцсети внизу */
     .sidebar-socials a img {
-      width: 30px;
-      height: 30px;
-      filter: grayscale(1) brightness(0.7);
-      transition: filter 0.2s;
+      width: 28px;
+      height: 28px;
+      filter: grayscale(1) brightness(0.8);
+      transition: filter 0.23s, transform .23s;
       user-select: none;
     }
     .sidebar-socials a:hover img {
-      filter: grayscale(0) brightness(1.2);
+      filter: grayscale(0) brightness(1.25);
+      transform: scale(1.17);
     }
 
-    /* --- Центральная часть --- */
+    /* Центральный блок */
     .main-content {
       position: absolute;
       left: 0; top: 0;
@@ -156,7 +127,6 @@
       align-items: stretch;
       pointer-events: none;
     }
-    /* 6 колонок по 1fr для грид-разметки */
     .main-grid {
       display: grid;
       width: 100vw;
@@ -164,8 +134,6 @@
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: 100vh;
     }
-
-    /* Левая часть (лого, имя, слоган) — строго по гриду */
     .main-left {
       grid-column: 2 / span 2;
       display: flex;
@@ -186,21 +154,20 @@
       align-items: center;
       gap: 10px;
     }
-    /* Анимация печатания */
     .main-title {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       margin-top: 0;
-      line-height: 1.1;
+      line-height: 1.12;
       display: flex;
       align-items: center;
     }
     #typed-cursor {
       font-weight: 400;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       color: #fff;
-      margin-left: 2px;
+      margin-left: 3px;
       animation: blink-cursor 1s steps(1) infinite;
     }
     @keyframes blink-cursor {
@@ -208,11 +175,11 @@
       51%, 100% { opacity: 0;}
     }
     .slogan {
-      font-size: 1.06rem;
+      font-size: 1.07rem;
       font-weight: 400;
       color: #bbb;
       letter-spacing: 0.07em;
-      margin-top: 18px;
+      margin-top: 20px;
       position: relative;
       background: linear-gradient(90deg, #fff 0%, #606060 100%);
       background-size: 200% 100%;
@@ -227,185 +194,180 @@
       95% { background-position: 0 0;}
       100% { background-position: 200% 0;}
     }
-    /* Правая часть — фото */
-    .main-photo {
-      grid-column: 4 / span 2;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      pointer-events: auto;
-    }
     .main-photo img {
       max-height: 78vh;
       object-fit: contain;
       filter: drop-shadow(0 8px 48px #0007);
       user-select: none;
+      width: 62%;
     }
 
-    /* --- Disable select everywhere --- */
-    * { user-select: none; }
+    /* Анимированные фоны */
+    .bg-section {
+      background-color: #151515;
+      transition: background-color 1s cubic-bezier(.55,.07,.38,1.13);
+    }
+    .bg-highlight {
+      background-color: #1e1e1e !important;
+    }
 
-    /* --- Адаптив не нужен --- */
+    /* Disable select everywhere */
+    * { user-select: none; }
   </style>
 </head>
-<body>
-  <!-- Вертикальные линии -->
-  <canvas class="vlines-canvas"></canvas>
-  <!-- Сетка -->
-  <canvas class="grid-canvas"></canvas>
+<body class="relative w-full h-screen">
 
-  <!-- Логотип -->
+  <!-- Вертикальные линии -->
+  <div class="absolute inset-0 z-0">
+    <div class="gridline" style="left: 0vw;"></div>
+    <div class="gridline" style="left: 20vw;"></div>
+    <div class="gridline" style="left: 40vw;"></div>
+    <div class="gridline" style="left: 60vw;"></div>
+    <div class="gridline" style="left: 80vw;"></div>
+    <div class="gridline" style="left: 100vw;"></div>
+  </div>
+
+  <!-- Анимированные фоны между линиями -->
+  <div class="absolute inset-0 z-[-1] flex w-full h-full">
+    <div class="w-[20%] bg-section" id="block-1"></div>
+    <div class="w-[20%] bg-section" id="block-2"></div>
+    <div class="w-[20%] bg-section" id="block-3"></div>
+    <div class="w-[20%] bg-section" id="block-4"></div>
+    <div class="w-[20%] bg-section" id="block-5"></div>
+  </div>
+
+  <!-- Сетка -->
+  <div class="absolute inset-0 z-[1] pointer-events-none">
+    <div id="static-grid"></div>
+  </div>
+
+  <!-- Логотип сверху слева -->
   <a class="logo-k18" href="/">
     <img src="public/logo.png" alt="K18">
   </a>
-  <!-- Соцсети -->
-  <div class="sidebar-socials">
-    <a href="https://t.me/" target="_blank"><img src="public/Telegram.png" alt="Telegram"></a>
-    <a href="https://vk.com/" target="_blank"><img src="public/Vk.png" alt="VK"></a>
-  </div>
-  <!-- Меню -->
-  <nav class="menu">
-    <div style="flex: 2 2 0;"></div>
-    <div class="menu-group" style="flex:0 0 auto;">
-      <a href="#" class="menu-link active">Главная</a>
-      <a href="#" class="menu-link">Проекты</a>
-    </div>
-    <div style="flex: 1 1 0;"></div>
-    <div class="menu-group" style="flex:0 0 auto;">
-      <a href="#" class="menu-link">Услуги</a>
-      <a href="#" class="menu-link">Команда</a>
-    </div>
-    <div style="flex: 1 1 0;"></div>
-    <div class="menu-group" style="flex:0 0 auto;">
-      <a href="#" class="menu-link">Об авторе</a>
-    </div>
-    <div style="flex: 1 1 0;"></div>
-  </nav>
 
-  <!-- Контент -->
-  <div class="main-content">
-    <div class="main-grid">
-      <div class="main-left">
-        <div class="logo-large">
-          <img src="public/logo.png" alt="K18" style="height: 70px; width:auto;">
-        </div>
-        <div class="main-title">
-          <span id="typed-text"></span><span id="typed-cursor">|</span>
-        </div>
-        <div class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</div>
-      </div>
-      <div class="main-photo">
-        <img src="public/my.png" alt="Фото">
-      </div>
-    </div>
+  <!-- Соцсети внизу -->
+  <div class="fixed bottom-8 left-8 z-30 flex flex-col gap-3 sidebar-socials">
+    <a href="https://t.me/de_korolev" target="_blank" title="Telegram" aria-label="Telegram">
+      <img src="public/Telegram.png" alt="Telegram">
+    </a>
+    <a href="https://vk.com/de_korolev" target="_blank" title="VK" aria-label="VK">
+      <img src="public/Vk.png" alt="VK">
+    </a>
   </div>
+
+  <!-- Верхнее меню — строго по линиям, группами -->
+  <header class="relative w-full h-24 z-10">
+    <!-- Группа: Главная, Проекты (от 2 линии) -->
+    <nav>
+      <div style="position:absolute; left:20vw; top:54px; display:flex; gap:40px;">
+        <a href="/" class="menu-link active">Главная</a>
+        <a href="/projects" class="menu-link">Проекты</a>
+      </div>
+      <!-- Группа: Услуги, Команда (от 3 линии) -->
+      <div style="position:absolute; left:40vw; top:54px; display:flex; gap:40px;">
+        <a href="/services" class="menu-link">Услуги</a>
+        <a href="/team" class="menu-link">Команда</a>
+      </div>
+      <!-- Группа: Об авторе (от 4 линии) -->
+      <div style="position:absolute; left:60vw; top:54px;">
+        <a href="/about" class="menu-link">Об авторе</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Центральный блок -->
+  <section class="absolute" style="left: 20vw; top: 34vh; width: 60vw;">
+    <img src="public/logo.png" alt="" class="w-[210px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
+    <h1 class="main-title">
+      <span id="typed-text"></span><span id="typed-cursor">|</span>
+    </h1>
+    <div style="position: relative;">
+      <p class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</p>
+    </div>
+  </section>
+
+  <!-- Фото между 3 и 5 линией -->
+  <div class="absolute left-[40vw] w-[40vw] top-24 bottom-0 flex justify-center items-end z-10 overflow-hidden main-photo">
+    <img src="public/my.png" alt="My Photo">
+  </div>
+
   <script>
-    // --- Вертикальные линии ---
-    const vlines = document.querySelector('.vlines-canvas');
-    function drawVLines() {
-      const ctx = vlines.getContext('2d');
-      vlines.width = window.innerWidth;
-      vlines.height = window.innerHeight;
-      const cols = 6;
-      for (let i = 0; i < cols; i++) {
-        const x = i * vlines.width / (cols - 1);
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, vlines.height);
-        ctx.strokeStyle = 'rgba(35,35,35,1)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    }
-    window.addEventListener('resize', drawVLines);
-    drawVLines();
-
-    // --- Сетка ---
-    const grid = document.querySelector('.grid-canvas');
-    function drawGrid(cursor) {
-      const ctx = grid.getContext('2d');
-      grid.width = window.innerWidth;
-      grid.height = window.innerHeight;
-      const size = 32;
-      for (let x = 0; x < grid.width; x += size) {
-        for (let y = 0; y < grid.height; y += size) {
-          let alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity'));
-          if (cursor && Math.abs(cursor.x - x) < 80 && Math.abs(cursor.y - y) < 80)
-            alpha = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-opacity-active'));
-          ctx.beginPath();
-          ctx.rect(x, y, size, size);
-          ctx.strokeStyle = `rgba(68,68,68,${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-    }
-    function resizeGrid() {
-      drawGrid();
-    }
-    window.addEventListener('resize', resizeGrid);
-    resizeGrid();
-
-    let lastCursor = null;
-    document.body.addEventListener('mousemove', (e) => {
-      lastCursor = {x: e.clientX, y: e.clientY};
-      drawGrid(lastCursor);
-    });
-    document.body.addEventListener('mouseleave', () => {
-      lastCursor = null;
-      drawGrid();
+    // --- Сетка с подсветкой ---
+    const grid = document.getElementById('static-grid');
+    let hideTimeout;
+    document.addEventListener('mousemove', e => {
+      grid.style.setProperty('--x', `${e.clientX}px`);
+      grid.style.setProperty('--y', `${e.clientY}px`);
+      grid.style.opacity = '1';
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => { grid.style.opacity = '0.45'; }, 1000);
     });
 
-    // --- Typing Animation for "KOROLEV DEN" ---
-    const text = 'KOROLEV DEN';
-    const textEl = document.getElementById('typed-text');
-    const cursorEl = document.getElementById('typed-cursor');
-
-    let state = 'typing'; // 'typing' | 'waiting' | 'erasing'
-    let idx = 0;
-    let blinkInterval;
-    let cyclePause = 15000; // 15 сек
-
-    function setText(s) {
-      textEl.textContent = s;
-    }
-    function blinkCursor() {
-      cursorEl.style.visibility = cursorEl.style.visibility === 'hidden' ? 'visible' : 'hidden';
-    }
-    function startBlink() {
-      if (blinkInterval) clearInterval(blinkInterval);
-      cursorEl.style.visibility = 'visible';
-      blinkInterval = setInterval(blinkCursor, 500);
-    }
-    function stopBlink() {
-      if (blinkInterval) clearInterval(blinkInterval);
-      cursorEl.style.visibility = 'visible';
-    }
-    async function typeLoop() {
-      while (true) {
-        // typing
-        state = 'typing';
-        for (idx = 1; idx <= text.length; idx++) {
-          setText(text.slice(0, idx));
-          stopBlink();
-          await new Promise(r => setTimeout(r, 70));
+    // --- Анимация печати/стереть/зациклить ---
+    const typedText = document.getElementById('typed-text');
+    const cursor = document.getElementById('typed-cursor');
+    const typingText = "KOROLEV DEN";
+    let index = 0, typing = true;
+    function loopAnimation() {
+      if (typing) {
+        if (index < typingText.length) {
+          typedText.textContent += typingText.charAt(index);
+          index++;
+          setTimeout(loopAnimation, 85);
+        } else {
+          setTimeout(() => {
+            typing = false;
+            loopAnimation();
+          }, 8000);
         }
-        // blinking, waiting
-        state = 'waiting';
-        startBlink();
-        await new Promise(r => setTimeout(r, cyclePause));
-        // erasing
-        state = 'erasing';
-        stopBlink();
-        for (idx = text.length; idx >= 0; idx--) {
-          setText(text.slice(0, idx));
-          await new Promise(r => setTimeout(r, 40));
+      } else {
+        if (index > 0) {
+          typedText.textContent = typingText.substring(0, index - 1);
+          index--;
+          setTimeout(loopAnimation, 50);
+        } else {
+          typing = true;
+          loopAnimation();
         }
-        // pause before typing again
-        await new Promise(r => setTimeout(r, 700));
       }
     }
-    typeLoop();
+    window.addEventListener('DOMContentLoaded', () => {
+      cursor.classList.add("animate-blink");
+      loopAnimation();
+      randomFlashLoop();
+    });
+
+    // --- Рандомная подсветка фонов ---
+    const blocks = [
+      document.getElementById('block-1'),
+      document.getElementById('block-2'),
+      document.getElementById('block-3'),
+      document.getElementById('block-4'),
+      document.getElementById('block-5')
+    ];
+    function randomFlashLoop() {
+      const randomIndex = Math.floor(Math.random() * blocks.length);
+      const el = blocks[randomIndex];
+      el.classList.add('bg-highlight');
+      setTimeout(() => el.classList.remove('bg-highlight'), 500);
+      setTimeout(randomFlashLoop, 2000);
+    }
+
+    // --- Активная ссылка меню по url ---
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const currentPath = window.location.pathname;
+    menuLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (
+        (href === '/' && currentPath === '/') ||
+        (href !== '/' && currentPath.startsWith(href))
+      ) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>
