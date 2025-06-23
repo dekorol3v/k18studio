@@ -174,25 +174,21 @@
       0%, 50% { opacity: 1;}
       51%, 100% { opacity: 0;}
     }
-    .slogan {
-      font-size: 1.07rem;
-      font-weight: 400;
-      color: #bbb;
-      letter-spacing: 0.07em;
-      margin-top: 20px;
+    #slogan {
       position: relative;
-      background: linear-gradient(90deg, #fff 0%, #606060 100%);
-      background-size: 200% 100%;
+      background: linear-gradient(90deg, #e5e5e5 0%, #7b7b7b 100%);
+      background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: slogan-glow 10s linear infinite;
-      user-select: none;
+      animation: slogan-glow 18s linear infinite;
+      font-weight: 300;
+      opacity: 0.85;
     }
     @keyframes slogan-glow {
-      0% { background-position: 200% 0;}
-      5% { background-position: 0 0;}
-      95% { background-position: 0 0;}
-      100% { background-position: 200% 0;}
+      0% { background-position: 200% 0; }
+      15% { background-position: 100% 0; }
+      85% { background-position: 0 0; }
+      100% { background-position: 200% 0; }
     }
     .main-photo img {
       max-height: 78vh;
@@ -278,13 +274,14 @@
 
   <!-- Центральный блок -->
   <section class="absolute" style="left: 20vw; top: 34vh; width: 60vw;">
-    <img src="public/logo.png" alt="" class="w-[210px] xl:w-[320px] h-auto mb-8" aria-hidden="true">
-    <h1 class="main-title">
+    <img src="public/logo.png" alt="" class="w-[150px] xl:w-[210px] h-auto mb-6" aria-hidden="true">
+    <h1 class="font-extrabold text-4xl xl:text-5xl text-white mb-2 whitespace-nowrap main-title" style="letter-spacing:0.09em;">
       <span id="typed-text"></span><span id="typed-cursor">|</span>
     </h1>
-    <div style="position: relative;">
-      <p class="slogan">УНИКАЛЬНОСТЬ — НЕ ТРЕНД, А СТАНДАРТ.</p>
-    </div>
+    <p id="slogan" class="text-neutral-400 text-[0.90rem] font-light tracking-widest uppercase"
+       style="margin-top:14px; letter-spacing:0.12em;">
+      Уникальность — не тренд, а стандарт.
+    </p>
   </section>
 
   <!-- Фото между 3 и 5 линией -->
@@ -307,7 +304,7 @@
     // --- Анимация печати/стереть/зациклить ---
     const typedText = document.getElementById('typed-text');
     const cursor = document.getElementById('typed-cursor');
-    const typingText = "KOROLEV DEN";
+    const typingText = "KOROLEV DENIS";
     let index = 0, typing = true;
     function loopAnimation() {
       if (typing) {
